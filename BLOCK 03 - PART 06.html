@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Block 03 • Reading Part 6 | Dr. Jesús Miguel Lima E. • JM ELT Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #040914;
+      --bg-panel: #0a1324;
+      --bg-card: #101d36;
+      --border-subtle: #1e293b;
+      --border-focus: #3b82f6;
+      --gold-cambridge: #d4af37;
+      --gold-hover: #b89628;
+      --blue-cambridge: #2563eb;
+      --blue-cambridge-light: #60a5fa;
+      --red-cambridge: #c8102e;
+      --success-green: #10b981;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: var(--bg-panel);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-back {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover {
+      color: var(--gold-cambridge);
+    }
+
+    .brand-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+    }
+
+    .module-badge {
+      background: rgba(37, 99, 235, 0.15);
+      border: 1px solid var(--blue-cambridge);
+      color: var(--blue-cambridge-light);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+    }
+
+    .container {
+      flex: 1;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 1.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .module-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .module-heading-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+      letter-spacing: -0.02em;
+    }
+
+    .module-heading-sub {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .task-instruction {
+      background-color: var(--bg-panel);
+      border-left: 4px solid var(--gold-cambridge);
+      padding: 1rem 1.25rem;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .task-instruction strong {
+      color: var(--text-main);
+    }
+
+    .reading-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 1024px) {
+      .reading-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .text-column {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 2.25rem;
+      font-size: 1.05rem;
+      line-height: 1.85;
+      max-height: calc(100vh - 270px);
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-subtle) transparent;
+    }
+
+    .article-header {
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 1rem;
+    }
+
+    .article-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+      margin-bottom: 0.35rem;
+    }
+
+    .article-subtitle {
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    .text-column p {
+      margin-bottom: 1.5rem;
+      text-align: justify;
+    }
+
+    .text-column p:last-child {
+      margin-bottom: 0;
+    }
+
+    .gap-target {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.2rem 0.5rem;
+      background-color: rgba(212, 175, 55, 0.1);
+      border: 1px solid var(--gold-cambridge);
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+      margin: 0 0.25rem;
+    }
+
+    .gap-target select {
+      background-color: var(--bg-card);
+      border: 1px solid var(--gold-cambridge);
+      color: var(--gold-cambridge);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .gap-target select:focus {
+      border-color: var(--blue-cambridge-light);
+    }
+
+    .sidebar-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      max-height: calc(100vh - 270px);
+      overflow-y: auto;
+      padding-right: 0.5rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-subtle) transparent;
+    }
+
+    .sentences-card {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+
+    .sentences-card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 0.5rem;
+    }
+
+    .sentence-item {
+      display: flex;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      margin-bottom: 0.65rem;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .sentence-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .sentence-letter {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: var(--blue-cambridge-light);
+      flex-shrink: 0;
+      min-width: 1.2rem;
+    }
+
+    .feedback-panel {
+      display: none;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .feedback-item {
+      background-color: var(--bg-panel);
+      border-radius: 6px;
+      padding: 1rem;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .feedback-item.correct {
+      border-left: 4px solid var(--success-green);
+      background: rgba(16, 185, 129, 0.08);
+      color: #d1fae5;
+    }
+
+    .feedback-item.incorrect {
+      border-left: 4px solid var(--red-cambridge);
+      background: rgba(200, 16, 46, 0.08);
+      color: #fecdd3;
+    }
+
+    .feedback-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .feedback-title.correct {
+      color: var(--success-green);
+    }
+
+    .feedback-title.incorrect {
+      color: #fb7185;
+    }
+
+    .feedback-row {
+      margin-top: 0.35rem;
+    }
+
+    .feedback-row strong {
+      color: var(--text-main);
+    }
+
+    .actions-bar {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .btn-submit {
+      background-color: var(--gold-cambridge);
+      color: #040914;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.85rem 2rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--gold-hover);
+    }
+
+    .btn-submit:active {
+      transform: scale(0.98);
+    }
+
+    footer {
+      background-color: var(--bg-panel);
+      border-top: 1px solid var(--border-subtle);
+      padding: 1.25rem 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: auto;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(4, 9, 20, 0.85);
+      display: none;
+      place-items: center;
+      z-index: 100;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-overlay.active {
+      display: grid;
+    }
+
+    .modal-container {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--gold-cambridge);
+      border-radius: 8px;
+      width: 90%;
+      max-width: 520px;
+      padding: 2.25rem;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    .modal-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      color: var(--gold-cambridge);
+      margin-bottom: 0.5rem;
+    }
+
+    .score-display {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 1rem 0;
+    }
+
+    .score-breakdown {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+      line-height: 1.5;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .btn-modal-primary {
+      background-color: var(--gold-cambridge);
+      color: #040914;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      padding: 0.85rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 0.95rem;
+      transition: background-color 0.2s;
+    }
+
+    .btn-modal-primary:hover {
+      background-color: var(--gold-hover);
+    }
+
+    .btn-modal-secondary {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      padding: 0.75rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .btn-modal-secondary:hover {
+      border-color: var(--text-muted);
+      color: var(--text-main);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand-group">
+      <a href="./index.html" class="nav-back">← Roadmap Hub</a>
+      <div class="brand-title">Dr. Jesús Miguel Lima E. • JM ELT Solutions</div>
+    </div>
+    <div class="module-badge">BLOCK 03 • PART 6</div>
+  </header>
+
+  <main class="container">
+    <div class="module-header">
+      <h1 class="module-heading-title">Reading Part 6 • Mock 03</h1>
+      <span class="module-heading-sub">Cambridge English: B2 First (FCE) • Training Block 03 (Part 2 of 2: Gapped Text)</span>
+    </div>
+
+    <div class="task-instruction">
+      You are going to read an article about returning to work after being away on holiday. Six sentences have been removed from the article. Choose from the sentences <strong>A–G</strong> the one which fits each gap (<strong>37–42</strong>). There is one extra sentence which you do not need to use. Each correct question awards <strong>2 points</strong> (Total: 12 points).
+    </div>
+
+    <div class="reading-grid">
+      <!-- Left Column: Gapped Text Article -->
+      <section class="text-column">
+        <div class="article-header">
+          <h2 class="article-title">Just because I’ve been on holiday doesn’t mean I have to be happy</h2>
+          <p class="article-subtitle">‘Holiday hangover’, ‘back-to-work blues’, ‘post-travel depression’ – it’s a well-known condition, and I’m suffering from it.</p>
+        </div>
+
+        <p>
+          My cat. My tortoise. My friends. My bed. The list reads the same every time, but I still write it. I write it on the last day of every holiday, to convince myself that going home isn’t so bad. Then I feel utterly miserable. There are plenty of things I’m not great at – driving, maths, returning library books on time – but the thing I’m worst at is coming back to work after a holiday.
+        </p>
+        <p>
+          It’s an extreme case of being selfishly miserable. To have had a lovely sunshine break and then return to the office, where everyone has been working hard without restaurant lunches or morning swims, with a face like thunder is terribly bad manners.
+          <span class="gap-target">
+            [ 37
+            <select id="gap_37" aria-label="Gap 37 selection">
+              <option value="">--</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+            </select>
+            ]
+          </span>
+          Given the number of names for it – ‘holiday hangover’, ‘back-to-work blues’, ‘post-travel depression’ – it’s a well-known condition.
+        </p>
+        <p>
+          In a recent survey conducted by a travel website, 82 per cent of the 1,254 people asked experienced post-holiday misery.
+          <span class="gap-target">
+            [ 38
+            <select id="gap_38" aria-label="Gap 38 selection">
+              <option value="">--</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+            </select>
+            ]
+          </span>
+          Probably just before they logged on to a job vacancy website or started fantasising about retraining for work in the countryside.
+        </p>
+        <p>
+          Even if you manage to avoid end-of-holiday panic, and you feel refreshed, relaxed and ready to face the world of work, you’re guaranteed to walk into stress, conflict and injustice.
+          <span class="gap-target">
+            [ 39
+            <select id="gap_39" aria-label="Gap 39 selection">
+              <option value="">--</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+            </select>
+            ]
+          </span>
+          Or the surprise departmental reorganisation that took place while you were away.
+        </p>
+        <p>
+          Still, it could be worse. Over three-quarters of people questioned said that their holiday depression lasted for a month.
+          <span class="gap-target">
+            [ 40
+            <select id="gap_40" aria-label="Gap 40 selection">
+              <option value="">--</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+            </select>
+            ]
+          </span>
+          Perhaps they should have saved their cash and not bothered going.
+        </p>
+        <p>
+          After years of practice, I’ve come up with a few things that help. A bit. The first is the list mentioned above.
+          <span class="gap-target">
+            [ 41
+            <select id="gap_41" aria-label="Gap 41 selection">
+              <option value="">--</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+            </select>
+            ]
+          </span>
+          Unlike some people I know, I can’t just roll off an intercontinental flight and roll in to the office. The third is concentrating on getting through the first day back at work without running away, making a grand plan for a new life or spending (too much) time on my own tearfully looking at my holiday photos saying to myself: ‘I can’t believe this is my life.’
+        </p>
+        <p>
+          I feel sorry for my poor colleagues having to look at my long face today, but at least by having my break now I’m getting my bad mood in early.
+          <span class="gap-target">
+            [ 42
+            <select id="gap_42" aria-label="Gap 42 selection">
+              <option value="">--</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+            </select>
+            ]
+          </span>
+          Then I can support them in their hour (month?) of need. I might even lend them one of my pets.
+        </p>
+      </section>
+
+      <!-- Right Column: Sentence Pool & Feedback Display -->
+      <section class="sidebar-column">
+        <div class="sentences-card">
+          <h3 class="sentences-card-title">Removed Sentences (A–G)</h3>
+
+          <div class="sentence-item">
+            <span class="sentence-letter">A</span>
+            <span>By September, on the other hand, when the schools go back and the main summer-holiday season is over, I’ll be back to normal.</span>
+          </div>
+          <div class="sentence-item">
+            <span class="sentence-letter">B</span>
+            <span>The most content, with both their home and working life, appear to be those who stay at home all summer.</span>
+          </div>
+          <div class="sentence-item">
+            <span class="sentence-letter">C</span>
+            <span>For instance, that highly important task you left with a colleague that’s been ignored and later caused your email inbox to turn toxic.</span>
+          </div>
+          <div class="sentence-item">
+            <span class="sentence-letter">D</span>
+            <span>At least, though, I’m not the only fed-up wage slave to feel like this.</span>
+          </div>
+          <div class="sentence-item">
+            <span class="sentence-letter">E</span>
+            <span>The next one is making sure I have a day off everything between getting home and going to work.</span>
+          </div>
+          <div class="sentence-item">
+            <span class="sentence-letter">F</span>
+            <span>Also, over two-thirds of them answered the next question, ‘Are you usually glad to be home after a holiday abroad?’ with a – presumably unhappy-sounding – ‘No’.</span>
+          </div>
+          <div class="sentence-item">
+            <span class="sentence-letter">G</span>
+            <span>Longer by at least a fortnight, I’d guess, than the holiday they’d taken.</span>
+          </div>
+        </div>
+
+        <div class="actions-bar">
+          <button type="button" class="btn-submit" id="submitBtn">Submit & View Diagnostic Feedback</button>
+        </div>
+
+        <div class="feedback-panel" id="feedbackPanel"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    All Rights Reserved © by Dr. Jesús Miguel Lima E. • JM ELT Solutions
+  </footer>
+
+  <!-- Modal Diagnostic Feedback -->
+  <div class="modal-overlay" id="feedbackModal">
+    <div class="modal-container">
+      <h2 class="modal-title">Diagnostic Results</h2>
+      <div class="score-display" id="scoreValue">0 / 12</div>
+      <p class="score-breakdown" id="scoreBreakdown">
+        You answered 0 out of 6 questions correctly.<br>
+        (Cambridge B2 Reading: 2 marks per question)
+      </p>
+      <div class="modal-actions">
+        <button type="button" class="btn-modal-primary" id="btnNextBlock">Continue to Block 04 • Reading Part 5 ➔</button>
+        <button type="button" class="btn-modal-secondary" onclick="closeModal()">Review Answers on Screen</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Master Pedagogical Data & Official Cambridge Key (Practice Test 12 Part 6)
+    const PEDAGOGICAL_DATA_B3P6 = {
+      37: {
+        correct: "D",
+        leadIn: "Before gap: Returning with a face like thunder is 'terribly bad manners.' After gap: 'Given the number of names for it... it’s a well-known condition.'",
+        whyCorrect: "Sentence D provides consolation ('At least, though, I’m not the only fed-up wage slave to feel like this'), which immediately connects with the following sentence explaining that it is a widespread condition with many common names.",
+        trap: "Choosing sentence B introduces an unnecessary digression about people staying at home, losing the cohesive link between feeling bad manners and knowing others share the condition."
+      },
+      38: {
+        correct: "F",
+        leadIn: "Before gap: 'In a recent survey conducted by a travel website, 82 per cent of the 1,254 people asked experienced post-holiday misery.' After gap: 'Probably just before they logged on to a job vacancy website...'",
+        whyCorrect: "Sentence F seamlessly continues reporting the survey data ('Also, over two-thirds of them answered the next question... with a... 'No''). The pronoun 'them' directly co-refers with the survey respondents.",
+        trap: "Sentence G discusses duration in weeks, which does not link to the immediate survey follow-up question or their reaction prior to looking for rural jobs."
+      },
+      39: {
+        correct: "C",
+        leadIn: "Before gap: '...you’re guaranteed to walk into stress, conflict and injustice.' After gap: 'Or the surprise departmental reorganisation that took place while you were away.'",
+        whyCorrect: "Sentence C supplies the first parallel illustrative example ('For instance, that highly important task you left with a colleague that’s been ignored...'), perfectly balancing the subsequent sentence starting with 'Or the surprise departmental reorganisation...'.",
+        trap: "Sentence B fails syntactically and semantically as it does not provide an example of workplace conflict or stress to match the 'Or' clause."
+      },
+      40: {
+        correct: "G",
+        leadIn: "Before gap: '...said that their holiday depression lasted for a month.' After gap: 'Perhaps they should have saved their cash and not bothered going.'",
+        whyCorrect: "Sentence G refers directly to the duration of 'a month': 'Longer by at least a fortnight, I’d guess, than the holiday they’d taken', justifying the satirical remark about saving money and staying home.",
+        trap: "Sentence A introduces a September timeline for the author, while gap 40 specifically reflects on the survey respondents whose depression lasted a month."
+      },
+      41: {
+        correct: "E",
+        leadIn: "Before gap: 'The first is the list mentioned above.' After gap: 'Unlike some people I know, I can’t just roll off an intercontinental flight and roll in to the office. The third is concentrating...'",
+        whyCorrect: "Sentence E introduces the second numbered tip: 'The next one is making sure I have a day off everything between getting home and going to work', completing the structural sequence ('The first...' -> 'The next one...' -> 'The third is...').",
+        trap: "Sentence C does not fit the list of strategies that help combat post-travel depression."
+      },
+      42: {
+        correct: "A",
+        leadIn: "Before gap: '...by having my break now I’m getting my bad mood in early.' After gap: 'Then I can support them in their hour (month?) of need.'",
+        whyCorrect: "Sentence A provides the temporal contrast: 'By September, on the other hand, when the schools go back and the main summer-holiday season is over, I’ll be back to normal', allowing the narrator to then support colleagues experiencing their own blues.",
+        trap: "Sentence B describes content people staying home all summer, which clashes with the author's plan to help colleagues returning in September."
+      }
+    };
+
+    function getFormattedDate() {
+      const now = new Date();
+      const day = String(now.getDate()).padStart(2, '0');
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const year = now.getFullYear();
+      return `${day}/${month}/${year}`;
+    }
+
+    document.getElementById('submitBtn').addEventListener('click', function () {
+      let correctCount = 0;
+      const totalGaps = 6;
+      const pointsPerGap = 2;
+      const feedbackPanel = document.getElementById('feedbackPanel');
+      feedbackPanel.innerHTML = '';
+
+      for (let gapNum = 37; gapNum <= 42; gapNum++) {
+        const selectElem = document.getElementById(`gap_${gapNum}`);
+        const userChoice = selectElem.value;
+        const data = PEDAGOGICAL_DATA_B3P6[gapNum];
+        const isCorrect = userChoice === data.correct;
+
+        if (isCorrect) {
+          correctCount++;
+          selectElem.style.borderColor = 'var(--success-green)';
+          selectElem.style.color = 'var(--success-green)';
+        } else {
+          selectElem.style.borderColor = 'var(--red-cambridge)';
+          selectElem.style.color = '#fb7185';
+        }
+
+        const itemDiv = document.createElement('div');
+        itemDiv.className = `feedback-item ${isCorrect ? 'correct' : 'incorrect'}`;
+        itemDiv.innerHTML = `
+          <div class="feedback-title ${isCorrect ? 'correct' : 'incorrect'}">
+            ${isCorrect ? '✓ Gap ' + gapNum + ': Well done!' : '✗ Gap ' + gapNum + ': Incorrect'} (Selected: ${userChoice || 'Empty'} | Correct: ${data.correct})
+          </div>
+          <div class="feedback-row"><strong>Context Clues:</strong> ${data.leadIn}</div>
+          <div class="feedback-row"><strong>Cohesion Analysis:</strong> ${data.whyCorrect}</div>
+          ${!isCorrect ? `<div class="feedback-row"><strong>Common Trap:</strong> ${data.trap}</div>` : ''}
+        `;
+        feedbackPanel.appendChild(itemDiv);
+      }
+
+      feedbackPanel.style.display = 'flex';
+
+      const totalScore = correctCount * pointsPerGap;
+      const maxScore = totalGaps * pointsPerGap;
+
+      // Update Modal
+      document.getElementById('scoreValue').textContent = `${totalScore} / ${maxScore}`;
+      document.getElementById('scoreBreakdown').innerHTML = `
+        You scored <strong>${correctCount}</strong> out of <strong>${totalGaps}</strong> gaps correctly.<br>
+        (Cambridge B2 Reading Part 6: 2 marks per item | Section total: ${totalScore} pts)
+      `;
+
+      // Save to localStorage
+      saveSessionData(totalScore, correctCount);
+
+      // Open Modal
+      document.getElementById('feedbackModal').classList.add('active');
+    });
+
+    function saveSessionData(score, correctCount) {
+      const storageKey = "fce_trainer_parts34_v1";
+      let sessionData = {};
+
+      try {
+        const stored = localStorage.getItem(storageKey);
+        if (stored) {
+          sessionData = JSON.parse(stored);
+        }
+      } catch (e) {
+        sessionData = {};
+      }
+
+      if (!sessionData.unlockedBlocks) {
+        sessionData.unlockedBlocks = [];
+      }
+
+      // Unlock current Block 03 Part 6 and next Block 04 Part 5
+      if (!sessionData.unlockedBlocks.includes("block_03_part_06")) {
+        sessionData.unlockedBlocks.push("block_03_part_06");
+      }
+      if (!sessionData.unlockedBlocks.includes("block_04_part_05")) {
+        sessionData.unlockedBlocks.push("block_04_part_05");
+      }
+
+      sessionData["block_03_part_06"] = {
+        correct: correctCount,
+        total: score,
+        completed: true,
+        timestamp: getFormattedDate()
+      };
+
+      localStorage.setItem(storageKey, JSON.stringify(sessionData));
+    }
+
+    function closeModal() {
+      document.getElementById('feedbackModal').classList.remove('active');
+    }
+
+    // Direct 1-click navigation to Block 04 Part 05
+    document.getElementById('btnNextBlock').addEventListener('click', function () {
+      window.location.href = './BLOCK 04 - PART 05.html';
+    });
+  </script>
+</body>
+</html>

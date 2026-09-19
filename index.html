@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cambridge B2 First (FCE) - Reading Mastery (Parts 5 & 6) - Dr. Jesús Miguel Lima E.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'AnanthaSignature';
+      src: url('Anantha%20Signature%20For%20Personal%20Use.ttf') format('truetype'),
+           url('Anantha Signature For Personal Use.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    :root {
+      --bg-canvas: #040914;
+      --bg-panel: #0a1324;
+      --bg-card: #101d36;
+      --bg-card-inner: #070e1c;
+      --border-subtle: #1c2e4c;
+      --border-gold: rgba(212, 175, 55, 0.4);
+      --accent-gold: #d4af37;
+      --accent-gold-soft: rgba(212, 175, 55, 0.12);
+      --accent-blue: #2563eb;
+      --accent-blue-light: #60a5fa;
+      --cambridge-brand-red: #c8102e;
+      --cambridge-brand-dark: #0a1b3a;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --shadow-deep: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      min-height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 90% 10%, rgba(37, 99, 235, 0.16) 0%, transparent 55%),
+        radial-gradient(circle at 10% 90%, rgba(212, 175, 55, 0.1) 0%, transparent 55%),
+        linear-gradient(to bottom, #030710, #081120);
+    }
+
+    #app-viewport {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .top-nav {
+      height: 58px;
+      background: rgba(6, 12, 23, 0.95);
+      border-bottom: 1px solid rgba(28, 46, 76, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 36px;
+      backdrop-filter: blur(12px);
+      z-index: 10;
+    }
+
+    .nav-brand-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .cambridge-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #ffffff;
+      padding: 4px 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+      user-select: none;
+    }
+
+    .cambridge-shield {
+      width: 16px;
+      height: 16px;
+      fill: var(--cambridge-brand-red);
+    }
+
+    .cambridge-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+      color: var(--cambridge-brand-dark);
+      letter-spacing: -0.2px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .cambridge-level {
+      font-size: 8.5px;
+      font-weight: 800;
+      color: var(--cambridge-brand-red);
+      margin-top: -4px;
+    }
+
+    .nav-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+
+    .nav-brand-right {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .coin-display {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid var(--accent-gold);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--accent-gold);
+    }
+
+    .company-logo-slot {
+      height: 38px;
+      max-width: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .company-logo-slot img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+    }
+
+    .progress-track {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-blue-light);
+      background: rgba(37, 99, 235, 0.14);
+      border: 1px solid rgba(96, 165, 250, 0.3);
+      padding: 4px 12px;
+      border-radius: 5px;
+    }
+
+    .screen-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .slide {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    /* COVER SCREEN */
+    .cover-fullscreen {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 44px 80px 40px 80px;
+      max-width: 1560px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .cover-top-badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .cover-headings-group {
+      margin-bottom: 8px;
+    }
+
+    .main-section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(26px, 3.2vw, 42px);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: #38bdf8;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .main-task-title {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(46px, 6vw, 82px);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.04em;
+      color: #ffffff;
+    }
+
+    .welcome-text-block {
+      max-width: 860px;
+      border-left: 3px solid var(--accent-gold);
+      padding-left: 24px;
+      margin-top: 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .welcome-en {
+      font-size: clamp(15.5px, 1.25vw, 19px);
+      color: #f1f5f9;
+      line-height: 1.65;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    .cover-bottom-row {
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 24px;
+      margin-top: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: nowrap;
+      gap: 32px;
+      width: 100%;
+    }
+
+    .signature-container {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .signature-name-wrapper {
+      margin-bottom: 12px;
+      padding-bottom: 4px;
+      white-space: nowrap;
+    }
+
+    .signature-name {
+      font-family: 'AnanthaSignature', cursive, sans-serif;
+      font-size: clamp(34px, 3.4vw, 56px);
+      font-weight: normal;
+      color: #ffffff;
+      line-height: 1.35;
+      display: inline-block;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    }
+
+    .signature-roles {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .signature-roles span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(11px, 0.9vw, 12.5px);
+      font-weight: 600;
+      color: #cbd5e1;
+      letter-spacing: 0.8px;
+      line-height: 1.4;
+    }
+
+    .signature-roles span.role-highlight {
+      color: var(--accent-gold);
+      font-weight: 700;
+    }
+
+    .cover-action-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-shrink: 0;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-launch-large {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(14px, 1.05vw, 16px);
+      font-weight: 700;
+      padding: 14px 30px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 1px solid rgba(96, 165, 250, 0.5);
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-launch-large:hover {
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.5);
+    }
+
+    /* CURRICULUM STAGE */
+    .center-stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: center;
+      padding: 40px 20px;
+      flex: 1;
+      max-width: 1040px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .center-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent-blue-light);
+      background: rgba(37, 99, 235, 0.15);
+      border: 1px solid rgba(96, 165, 250, 0.3);
+      padding: 6px 16px;
+      border-radius: 9999px;
+      margin-bottom: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .center-title {
+      font-size: clamp(28px, 2.5vw, 36px);
+      font-weight: 800;
+      margin-bottom: 12px;
+      line-height: 1.25;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .progress-summary-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 24px 28px;
+      width: 100%;
+      box-shadow: var(--shadow-deep);
+      text-align: left;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .block-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 20px;
+      background: var(--bg-card-inner);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      gap: 16px;
+      transition: all 0.2s ease;
+    }
+
+    .block-row.unlocked {
+      border-color: rgba(37, 99, 235, 0.4);
+    }
+
+    .block-row.unlocked:hover {
+      border-color: var(--accent-blue-light);
+      background: rgba(16, 29, 54, 0.9);
+    }
+
+    .block-row.current {
+      border-color: var(--accent-blue);
+      border-left: 5px solid var(--accent-blue);
+    }
+
+    .block-row.completed {
+      border-color: rgba(16, 185, 129, 0.4);
+      border-left: 5px solid #10b981;
+    }
+
+    .block-row.locked {
+      opacity: 0.45;
+    }
+
+    .block-info h4 {
+      font-size: 15.5px;
+      color: #ffffff;
+      margin-bottom: 4px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+    }
+
+    .block-info span {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.4;
+      display: block;
+    }
+
+    .block-score-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-gold);
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-top: 6px;
+    }
+
+    .block-actions-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-block-launch {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      font-weight: 800;
+      padding: 9px 15px;
+      border-radius: 6px;
+      border: 1px solid var(--accent-blue-light);
+      background: rgba(37, 99, 235, 0.25);
+      color: #ffffff;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-block-launch:hover {
+      background: var(--accent-blue);
+      box-shadow: 0 0 12px rgba(37, 99, 235, 0.6);
+      transform: translateY(-1px);
+    }
+
+    .btn-block-launch.review {
+      border-color: rgba(16, 185, 129, 0.4);
+      background: rgba(16, 185, 129, 0.15);
+      color: #a7f3d0;
+    }
+
+    .btn-block-launch.review:hover {
+      background: #10b981;
+      color: #040914;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
+    }
+
+    .btn-block-launch.secondary-part {
+      border-color: var(--border-subtle);
+      background: rgba(10, 19, 36, 0.7);
+      color: var(--accent-blue-light);
+    }
+
+    .btn-block-launch.secondary-part:hover {
+      background: var(--accent-blue);
+      color: #ffffff;
+      border-color: var(--accent-blue-light);
+    }
+
+    .bottom-bar {
+      padding: 18px 40px;
+      background: rgba(6, 12, 23, 0.95);
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .btn-act {
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      padding: 11px 22px;
+      border-radius: 7px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border-color: var(--border-subtle);
+      color: #cbd5e1;
+    }
+
+    .btn-outline:hover {
+      background: var(--bg-card);
+      color: #ffffff;
+    }
+
+    .institutional-bottom {
+      padding: 10px 36px;
+      background: #03060d;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #64748b;
+    }
+
+    .institutional-bottom strong {
+      color: #cbd5e1;
+    }
+
+    @media (max-width: 860px) {
+      .cover-fullscreen {
+        padding: 36px 20px 24px 20px;
+      }
+      .top-nav {
+        padding: 0 18px;
+      }
+      .bottom-bar {
+        padding: 14px 20px;
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+      .cover-bottom-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
+      .signature-name {
+        font-size: 32px;
+      }
+      .cover-action-wrapper {
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .btn-launch-large {
+        width: 100%;
+        justify-content: center;
+      }
+      .welcome-text-block {
+        margin-top: 36px;
+      }
+      .block-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .block-actions-group {
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .institutional-bottom {
+        flex-direction: column;
+        gap: 6px;
+        text-align: center;
+        padding: 12px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="app-viewport">
+    
+    <!-- TOP NAVIGATION -->
+    <div class="top-nav" id="topNav" style="display: none;">
+      <div class="nav-brand-left">
+        <div class="cambridge-badge">
+          <svg class="cambridge-shield" viewBox="0 0 24 24">
+            <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm0 2.18l6 2.25v4.66c0 4.14-2.73 8.02-6 9.11-3.27-1.09-6-4.97-6-9.11V6.43l6-2.25z"/>
+          </svg>
+          <span class="cambridge-name">Cambridge</span>
+          <span class="cambridge-level">B2</span>
+        </div>
+        <span class="nav-title">B2 First: Reading Mastery (Parts 5 & 6)</span>
+      </div>
+
+      <div class="nav-brand-right">
+        <div class="coin-display">
+          <span>🪙</span> <span id="navCoins">100</span>
+        </div>
+        <div class="progress-track" id="navPageTrack">Curriculum Index</div>
+        <div class="company-logo-slot">
+          <img src="logo.png" alt="JM ELT Solutions" onerror="this.style.display='none'">
+        </div>
+      </div>
+    </div>
+
+    <!-- MOUNT CONTAINER -->
+    <div class="screen-container" id="mountNode"></div>
+
+    <!-- INSTITUTIONAL FOOTER -->
+    <div class="institutional-bottom">
+      <span>Cambridge B2 First: Reading Mastery Series (Parts 5 & 6)</span>
+      <span>All Rights Reserved © by <strong>Dr. Jesús Miguel Lima E.</strong> • JM ELT Solutions</span>
+    </div>
+
+  </div>
+
+  <script>
+    const STORAGE_KEY = "fce_trainer_parts34_v1";
+    let activeScreen = 1;
+
+    let session = {
+      firstName: "Teacher",
+      birthYear: "",
+      coins: 100,
+      unlockedBlocks: ["block_01_part_05"],
+      readingScores: {}
+    };
+
+    function initData() {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        try {
+          const parsed = JSON.parse(raw);
+          session = { ...session, ...parsed };
+        } catch (e) {
+          console.error("Error reading session from localStorage:", e);
+        }
+      }
+
+      if (!session.unlockedBlocks) {
+        session.unlockedBlocks = ["block_01_part_05"];
+      }
+      if (!session.readingScores) {
+        session.readingScores = {};
+      }
+
+      // Sync existing block results from earlier test sessions if present
+      for (let i = 1; i <= 10; i++) {
+        const numStr = String(i).padStart(2, '0');
+        const p5Key = `block_${numStr}_part_05`;
+        const p6Key = `block_${numStr}_part_06`;
+
+        if (session[p5Key] && !session.readingScores[p5Key]) {
+          session.readingScores[p5Key] = session[p5Key];
+        }
+        if (session[p6Key] && !session.readingScores[p6Key]) {
+          session.readingScores[p6Key] = session[p6Key];
+        }
+      }
+
+      syncStorage();
+    }
+
+    function syncStorage() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
+      const elCoins = document.getElementById('navCoins');
+      if (elCoins) elCoins.innerText = session.coins || 100;
+    }
+
+    function setScreen(step) {
+      activeScreen = step;
+      render();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function navigateToSection(filePath) {
+      syncStorage();
+      window.location.href = filePath;
+    }
+
+    function render() {
+      const mount = document.getElementById('mountNode');
+      const nav = document.getElementById('topNav');
+      const track = document.getElementById('navPageTrack');
+      mount.innerHTML = '';
+
+      if (activeScreen === 1) {
+        nav.style.display = 'none';
+        renderCover(mount);
+      } else if (activeScreen === 2) {
+        nav.style.display = 'flex';
+        track.innerText = 'Curriculum Index';
+        renderCurriculum(mount);
+      }
+      syncStorage();
+    }
+
+    function renderCover(mount) {
+      mount.innerHTML = `
+        <div class="slide">
+          <div class="cover-fullscreen">
+            <div>
+              <div class="cover-top-badge-row">
+                <div class="cambridge-badge" style="padding: 5px 12px;">
+                  <svg class="cambridge-shield" style="width:18px; height:18px;" viewBox="0 0 24 24">
+                    <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm0 2.18l6 2.25v4.66c0 4.14-2.73 8.02-6 9.11-3.27-1.09-6-4.97-6-9.11V6.43l6-2.25z"/>
+                  </svg>
+                  <span class="cambridge-name" style="font-size:15px;">Cambridge English</span>
+                  <span class="cambridge-level" style="font-size:10px; margin-top:-6px;">B2</span>
+                </div>
+
+                <div class="company-logo-slot" style="height:48px; max-width:160px;">
+                  <img src="logo.png" alt="JM ELT Solutions" onerror="this.style.display='none'">
+                </div>
+              </div>
+
+              <div class="cover-headings-group">
+                <div class="main-section-title">CAMBRIDGE EXAMINATION • B2 FIRST (FCE)</div>
+                <div class="main-task-title">"READING MASTERY SUITE"</div>
+              </div>
+
+              <div class="welcome-text-block">
+                <p class="welcome-en">
+                  Welcome to the specialized training suite for Cambridge B2 First. Master Part 5 (Long Text Multiple Choice) and Part 6 (Gapped Text) through paired training blocks, deep discourse analysis, and diagnostic pedagogical feedback.
+                </p>
+              </div>
+            </div>
+
+            <div class="cover-bottom-row">
+              <div class="signature-container">
+                <div class="signature-name-wrapper">
+                  <span class="signature-name">by Dr. Jesús Miguel Lima E.</span>
+                </div>
+                <div class="signature-roles">
+                  <span class="role-highlight">CEO of JM ELT Solutions</span>
+                  <span>Celta & Delta Trainer</span>
+                  <span>Exam Trainer</span>
+                  <span>Teacher Trainer</span>
+                  <span>University Professor</span>
+                </div>
+              </div>
+
+              <div class="cover-action-wrapper">
+                <button class="btn-launch-large" onclick="setScreen(2)">
+                  <span>🚀</span> Open Training Program ➔
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      `;
+    }
+
+    function renderCurriculum(mount) {
+      const totalBlocks = 10;
+      let completedBlocksCount = 0;
+
+      const blocksConfig = [];
+      for (let i = 1; i <= totalBlocks; i++) {
+        const numStr = String(i).padStart(2, '0');
+        blocksConfig.push({
+          id: i,
+          numStr: numStr,
+          title: `Training Block ${numStr}`,
+          desc: `Part 5: Long Text Multiple Choice (Questions 31–36) • Part 6: Gapped Text (Questions 37–42)`,
+          p5Key: `block_${numStr}_part_05`,
+          p6Key: `block_${numStr}_part_06`,
+          p5File: `./BLOCK ${numStr} - PART 05.html`,
+          p6File: `./BLOCK ${numStr} - PART 06.html`
+        });
+      }
+
+      blocksConfig.forEach(b => {
+        const p5Score = (session.readingScores && session.readingScores[b.p5Key]) || session[b.p5Key];
+        const p6Score = (session.readingScores && session.readingScores[b.p6Key]) || session[b.p6Key];
+        if (p5Score && p5Score.completed && p6Score && p6Score.completed) {
+          completedBlocksCount++;
+        }
+      });
+
+      const pct = Math.round((completedBlocksCount / totalBlocks) * 100);
+
+      const blocksHtml = blocksConfig.map((b) => {
+        const p5Score = (session.readingScores && session.readingScores[b.p5Key]) || session[b.p5Key];
+        const p6Score = (session.readingScores && session.readingScores[b.p6Key]) || session[b.p6Key];
+
+        const isP5Completed = p5Score && p5Score.completed;
+        const isP6Completed = p6Score && p6Score.completed;
+        const isBlockCompleted = isP5Completed && isP6Completed;
+
+        const isP5Unlocked = session.unlockedBlocks && (session.unlockedBlocks.includes(b.p5Key) || b.id === 1);
+        const isP6Unlocked = session.unlockedBlocks && session.unlockedBlocks.includes(b.p6Key);
+        const isBlockUnlocked = isP5Unlocked || isP6Unlocked || isBlockCompleted;
+
+        let stateClass = "locked";
+        let scoreBadge = "";
+        let actionsHtml = `<div style="font-family:'JetBrains Mono'; font-size:11.5px; font-weight:700; color:var(--text-muted);">🔒 LOCKED</div>`;
+
+        if (isBlockCompleted) {
+          stateClass = "unlocked completed";
+          const scoreP5 = p5Score.total || 0;
+          const scoreP6 = p6Score.total || 0;
+          const blockTotal = scoreP5 + scoreP6;
+          scoreBadge = `<div class="block-score-badge">✓ Score: ${blockTotal}/24 pts (P5: ${scoreP5}/12 • P6: ${scoreP6}/12)</div>`;
+          actionsHtml = `
+            <div class="block-actions-group">
+              <button class="btn-block-launch review" onclick="navigateToSection('${b.p5File}')">
+                <span>↺</span> Review P5
+              </button>
+              <button class="btn-block-launch review" onclick="navigateToSection('${b.p6File}')">
+                <span>↺</span> Review P6
+              </button>
+            </div>
+          `;
+        } else if (isBlockUnlocked) {
+          stateClass = "unlocked current";
+
+          if (isP5Completed && !isP6Completed) {
+            const scoreP5 = p5Score.total || 0;
+            scoreBadge = `<div class="block-score-badge">P5: ${scoreP5}/12 pts • P6 Pending</div>`;
+            actionsHtml = `
+              <div class="block-actions-group">
+                <button class="btn-block-launch review" onclick="navigateToSection('${b.p5File}')">
+                  <span>↺</span> Review P5
+                </button>
+                <button class="btn-block-launch" onclick="navigateToSection('${b.p6File}')">
+                  <span>▶</span> Launch Part 6
+                </button>
+              </div>
+            `;
+          } else {
+            actionsHtml = `
+              <div class="block-actions-group">
+                <button class="btn-block-launch" onclick="navigateToSection('${b.p5File}')">
+                  <span>▶</span> Launch Part 5
+                </button>
+                ${isP6Unlocked ? `
+                  <button class="btn-block-launch secondary-part" onclick="navigateToSection('${b.p6File}')">
+                    <span>▶</span> Part 6
+                  </button>
+                ` : ''}
+              </div>
+            `;
+          }
+        }
+
+        return `
+          <div class="block-row ${stateClass}">
+            <div class="block-info">
+              <h4>${b.title}</h4>
+              <span>${b.desc}</span>
+              ${scoreBadge}
+            </div>
+            <div>${actionsHtml}</div>
+          </div>
+        `;
+      }).join('');
+
+      mount.innerHTML = `
+        <div class="slide">
+          <div class="center-stage">
+            <div class="center-tag"><span>🧭</span> READING SYLLABUS</div>
+            <h2 class="center-title">CURRICULUM INDEX: 10 TRAINING BLOCKS</h2>
+            <div style="max-width: 720px; margin-bottom: 8px;">
+              <p style="font-size:15px; color:#e2e8f0; line-height:1.5;">
+                Progress: <strong style="color:var(--accent-gold);">${pct}% Complete</strong> (${completedBlocksCount} of 10 Blocks Completed). Each training block evaluates Reading Part 5 and Part 6 sequentially (24 marks total per block).
+              </p>
+            </div>
+
+            <div class="progress-summary-card">
+              ${blocksHtml}
+            </div>
+          </div>
+
+          <div class="bottom-bar">
+            <button class="btn-act btn-outline" onclick="setScreen(1)">
+              <span>⬅</span> Back to Cover
+            </button>
+            <div style="font-family:'JetBrains Mono'; font-size:12px; color:var(--text-muted);">
+              Total Evaluation: 24 Marks per Block (Part 5: 12 pts • Part 6: 12 pts)
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    initData();
+    render();
+  </script>
+</body>
+</html>

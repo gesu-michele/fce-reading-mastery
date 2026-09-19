@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Block 03 • Reading Part 5 | Dr. Jesús Miguel Lima E. • JM ELT Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #040914;
+      --bg-panel: #0a1324;
+      --bg-card: #101d36;
+      --border-subtle: #1e293b;
+      --border-focus: #3b82f6;
+      --gold-cambridge: #d4af37;
+      --gold-hover: #b89628;
+      --blue-cambridge: #2563eb;
+      --blue-cambridge-light: #60a5fa;
+      --red-cambridge: #c8102e;
+      --success-green: #10b981;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: var(--bg-panel);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-back {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover {
+      color: var(--gold-cambridge);
+    }
+
+    .brand-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+    }
+
+    .module-badge {
+      background: rgba(37, 99, 235, 0.15);
+      border: 1px solid var(--blue-cambridge);
+      color: var(--blue-cambridge-light);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+    }
+
+    .container {
+      flex: 1;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 1.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .module-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .module-heading-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+      letter-spacing: -0.02em;
+    }
+
+    .module-heading-sub {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .task-instruction {
+      background-color: var(--bg-panel);
+      border-left: 4px solid var(--gold-cambridge);
+      padding: 1rem 1.25rem;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .task-instruction strong {
+      color: var(--text-main);
+    }
+
+    .reading-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 1024px) {
+      .reading-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .text-column {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 2.25rem 2.25rem 2.25rem 4.5rem;
+      font-size: 1.05rem;
+      line-height: 1.85;
+      max-height: calc(100vh - 270px);
+      overflow-y: auto;
+      position: relative;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-subtle) transparent;
+    }
+
+    .article-header {
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 1rem;
+    }
+
+    .article-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+      margin-bottom: 0.35rem;
+    }
+
+    .text-column p {
+      margin-bottom: 1.5rem;
+      text-align: justify;
+    }
+
+    .text-column p:last-child {
+      margin-bottom: 0;
+    }
+
+    .line-container {
+      position: relative;
+    }
+
+    .margin-line-indicator {
+      position: absolute;
+      left: -3.8rem;
+      top: 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--gold-cambridge);
+      font-weight: 600;
+      user-select: none;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+
+    .line-target {
+      color: var(--gold-cambridge);
+      font-weight: 600;
+      border-bottom: 1px dashed var(--gold-cambridge);
+    }
+
+    .questions-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      max-height: calc(100vh - 270px);
+      overflow-y: auto;
+      padding-right: 0.5rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-subtle) transparent;
+    }
+
+    .question-card {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      transition: border-color 0.2s;
+    }
+
+    .question-card:focus-within {
+      border-color: var(--border-focus);
+    }
+
+    .question-header {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .q-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+      flex-shrink: 0;
+    }
+
+    .q-text {
+      font-weight: 600;
+      font-size: 0.98rem;
+      color: var(--text-main);
+    }
+
+    .options-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .option-label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.92rem;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .option-label:hover {
+      border-color: var(--blue-cambridge);
+      background-color: rgba(37, 99, 235, 0.08);
+    }
+
+    .option-label input[type="radio"] {
+      appearance: none;
+      width: 1.15rem;
+      height: 1.15rem;
+      border: 2px solid var(--text-muted);
+      border-radius: 50%;
+      outline: none;
+      display: grid;
+      place-content: center;
+      transition: border-color 0.2s;
+      flex-shrink: 0;
+    }
+
+    .option-label input[type="radio"]::before {
+      content: "";
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 50%;
+      transform: scale(0);
+      transition: transform 0.15s ease-in-out;
+      background-color: var(--gold-cambridge);
+    }
+
+    .option-label input[type="radio"]:checked {
+      border-color: var(--gold-cambridge);
+    }
+
+    .option-label input[type="radio"]:checked::before {
+      transform: scale(1);
+    }
+
+    .opt-key {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: var(--blue-cambridge-light);
+      min-width: 1rem;
+    }
+
+    /* Feedback Display */
+    .diagnostic-feedback-box {
+      display: none;
+      margin-top: 1rem;
+      padding: 1rem 1.25rem;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+
+    .diagnostic-feedback-box.correct {
+      display: block;
+      background: rgba(16, 185, 129, 0.08);
+      border-left: 4px solid var(--success-green);
+      color: #d1fae5;
+    }
+
+    .diagnostic-feedback-box.incorrect {
+      display: block;
+      background: rgba(200, 16, 46, 0.08);
+      border-left: 4px solid var(--red-cambridge);
+      color: #fecdd3;
+    }
+
+    .feedback-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .feedback-title.correct {
+      color: var(--success-green);
+    }
+
+    .feedback-title.incorrect {
+      color: #fb7185;
+    }
+
+    .feedback-section {
+      margin-top: 0.45rem;
+    }
+
+    .feedback-section strong {
+      color: var(--text-main);
+    }
+
+    .actions-bar {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .btn-submit {
+      background-color: var(--gold-cambridge);
+      color: #040914;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.85rem 2rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--gold-hover);
+    }
+
+    .btn-submit:active {
+      transform: scale(0.98);
+    }
+
+    footer {
+      background-color: var(--bg-panel);
+      border-top: 1px solid var(--border-subtle);
+      padding: 1.25rem 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: auto;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(4, 9, 20, 0.85);
+      display: none;
+      place-items: center;
+      z-index: 100;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-overlay.active {
+      display: grid;
+    }
+
+    .modal-container {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--gold-cambridge);
+      border-radius: 8px;
+      width: 90%;
+      max-width: 520px;
+      padding: 2.25rem;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    .modal-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      color: var(--gold-cambridge);
+      margin-bottom: 0.5rem;
+    }
+
+    .score-display {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 1rem 0;
+    }
+
+    .score-breakdown {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+      line-height: 1.5;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .btn-modal-primary {
+      background-color: var(--gold-cambridge);
+      color: #040914;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      padding: 0.85rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 0.95rem;
+      transition: background-color 0.2s;
+    }
+
+    .btn-modal-primary:hover {
+      background-color: var(--gold-hover);
+    }
+
+    .btn-modal-secondary {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      padding: 0.75rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .btn-modal-secondary:hover {
+      border-color: var(--text-muted);
+      color: var(--text-main);
+    }
+
+    .option-label.is-correct {
+      border-color: var(--success-green) !important;
+      background-color: rgba(16, 185, 129, 0.12) !important;
+    }
+
+    .option-label.is-wrong {
+      border-color: var(--red-cambridge) !important;
+      background-color: rgba(200, 16, 46, 0.12) !important;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand-group">
+      <a href="./index.html" class="nav-back">← Roadmap Hub</a>
+      <div class="brand-title">Dr. Jesús Miguel Lima E. • JM ELT Solutions</div>
+    </div>
+    <div class="module-badge">BLOCK 03 • PART 5</div>
+  </header>
+
+  <main class="container">
+    <div class="module-header">
+      <h1 class="module-heading-title">Reading Part 5 • Mock 03</h1>
+      <span class="module-heading-sub">Cambridge English: B2 First (FCE) • Training Block 03 (Part 1 of 2)</span>
+    </div>
+
+    <div class="task-instruction">
+      You are going to read an extract from a novel. For questions <strong>31–36</strong>, choose the answer (<strong>A</strong>, <strong>B</strong>, <strong>C</strong> or <strong>D</strong>) which you think fits best according to the text. Each correct question awards <strong>2 points</strong> (Total: 12 points).
+    </div>
+
+    <div class="reading-grid">
+      <!-- Left Column: Reading Text -->
+      <section class="text-column">
+        <div class="article-header">
+          <h2 class="article-title">Night flight</h2>
+        </div>
+
+        <p>
+          The flight is busy and the last few passengers to board are searching for places to stow their hand luggage. The Asian woman in the seat next to me is in her late twenties, probably travelling on business. I am wondering if I should talk to her when the man in the window seat shows up and we have to let him in. She settles back in the middle seat. When I try to strap myself back in I find she’s picked up the buckle of my belt by accident and we look at each other and laugh.
+        </p>
+        <p>
+          ‘What have you been doing in Bangalore?’ I ask.
+        </p>
+        <p>
+          ‘My office is there. It’s where I’m based.’ I notice that she has a North American accent. She tells me she works for a multinational company that makes clothing and that she is on her way to Thailand. She has to visit a couple of factories and meet with some other people from the company. She’s also trying to complete her PhD thesis, which is on a laptop she has under the seat in front of her. While she’s talking she puts her passport away in her bag and I see she’s Canadian.
+        </p>
+        <p>
+          She asks me what I do and I tell her. Then I ask her some more about her job and she tells me about that. By this time we are in the air and climbing towards our cruising altitude. The cabin is quiet, lights still dimmed, just the gentle sound of the air conditioning and the murmur of conversations. The flight to Singapore is three and a half hours. I can’t decide whether to attempt sleep. It is nearly midnight and it hardly seems worth it. The man in the window seat has put on eye-shades and has an inflated pillow around his neck. He has slipped down in the seat with his head lolling to one side, his blanket pulled up to his chest. The woman shows no inclination to sleep so I ask her where she grew up.
+        </p>
+        <p>
+          She tells me her father is a medical doctor and that he went to Canada before she was born. They spent a few years in Montreal but most of the time she lived in Saskatchewan. ‘It was OK,’ she says. ‘There are things happening there, it’s not as dull as you might think.’ She tells me sometimes in the winter it would get down to minus sixty.
+        </p>
+        <p>
+          ‘Really it was minus thirty,’ she says. ‘But the wind chill factor made it feel like minus sixty. I remember them saying on the weather forecast “human flesh will freeze in 1.4 seconds.” Things like that.’
+        </p>
+        <p>
+          ‘I’ve never been anywhere that cold,’ I say.
+        </p>
+        <p class="line-container">
+          ‘Somehow it didn’t feel that bad,’ she says. ‘It was like a dry cold. When the sun was shining it didn’t seem that cold. It makes your skin kind of tingle. We used to play out in it. You can get seriously cold and not realise it. When you’re back indoors your face and hands ache as the blood comes back. I suppose <span class="margin-line-indicator">line 52</span><span class="line-target">that</span> is how polar explorers end up losing toes. They don’t realise how cold they are.’
+        </p>
+        <p>
+          ‘I suppose so,’ I say. There’s a pause in the conversation and I wonder what to say next.
+        </p>
+        <p>
+          ‘I guess you get the other extreme living in India.’
+        </p>
+        <p>
+          ‘Bangalore is fine,’ she says, ‘though we need rain. The drought is very bad in south India right now.’
+        </p>
+        <p>
+          The woman asks me how I got into my present job and I tell her a bit about my life. At least I tell her the story which over time has fashioned itself into what I call my life. It’s not that I’m being deliberately secretive or deceitful. I just don’t know how to talk about what really happened.
+        </p>
+      </section>
+
+      <!-- Right Column: Interactive Questions 31-36 -->
+      <section class="questions-column">
+        <form id="readingForm">
+          <!-- Question 31 -->
+          <div class="question-card" id="q31_card">
+            <div class="question-header">
+              <span class="q-number">31</span>
+              <span class="q-text">What do we find out about the woman in the first paragraph?</span>
+            </div>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="q31" value="A">
+                <span class="opt-key">A</span>
+                <span>She is annoyed at having to change seats with another passenger.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q31" value="B">
+                <span class="opt-key">B</span>
+                <span>She finds a mistake she makes amusing.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q31" value="C">
+                <span class="opt-key">C</span>
+                <span>She wants to get on with her work during the flight.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q31" value="D">
+                <span class="opt-key">D</span>
+                <span>She has difficulty finding room for items she brought on board.</span>
+              </label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q31"></div>
+          </div>
+
+          <!-- Question 32 -->
+          <div class="question-card" id="q32_card" style="margin-top: 1.25rem;">
+            <div class="question-header">
+              <span class="q-number">32</span>
+              <span class="q-text">What does the woman say at the beginning of the conversation?</span>
+            </div>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="q32" value="A">
+                <span class="opt-key">A</span>
+                <span>She has Canadian nationality.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q32" value="B">
+                <span class="opt-key">B</span>
+                <span>She usually works in Thailand.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q32" value="C">
+                <span class="opt-key">C</span>
+                <span>She is currently both studying and working.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q32" value="D">
+                <span class="opt-key">D</span>
+                <span>She is going to work for a different employer.</span>
+              </label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q32"></div>
+          </div>
+
+          <!-- Question 33 -->
+          <div class="question-card" id="q33_card" style="margin-top: 1.25rem;">
+            <div class="question-header">
+              <span class="q-number">33</span>
+              <span class="q-text">Why does the writer stay awake throughout the flight?</span>
+            </div>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="q33" value="A">
+                <span class="opt-key">A</span>
+                <span>There is a lot of mechanical noise on the plane.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q33" value="B">
+                <span class="opt-key">B</span>
+                <span>Nobody else on board seems to want to sleep.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q33" value="C">
+                <span class="opt-key">C</span>
+                <span>Some of the passengers are talking loudly.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q33" value="D">
+                <span class="opt-key">D</span>
+                <span>He would not be able to sleep very long.</span>
+              </label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q33"></div>
+          </div>
+
+          <!-- Question 34 -->
+          <div class="question-card" id="q34_card" style="margin-top: 1.25rem;">
+            <div class="question-header">
+              <span class="q-number">34</span>
+              <span class="q-text">The woman talks about temperatures in Canada to show that</span>
+            </div>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="q34" value="A">
+                <span class="opt-key">A</span>
+                <span>it could sometimes be extremely cold in Montreal.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q34" value="B">
+                <span class="opt-key">B</span>
+                <span>India is a more pleasant country to live in than Canada.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q34" value="C">
+                <span class="opt-key">C</span>
+                <span>the place where she grew up could be interesting.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q34" value="D">
+                <span class="opt-key">D</span>
+                <span>in Saskatchewan children had to stay at home all winter.</span>
+              </label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q34"></div>
+          </div>
+
+          <!-- Question 35 -->
+          <div class="question-card" id="q35_card" style="margin-top: 1.25rem;">
+            <div class="question-header">
+              <span class="q-number">35</span>
+              <span class="q-text">What does ‘that’ refer to in line 52?</span>
+            </div>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="q35" value="A">
+                <span class="opt-key">A</span>
+                <span>failing to notice how cold some parts of the body really are</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q35" value="B">
+                <span class="opt-key">B</span>
+                <span>wearing clothes that do not cover the skin in very cold weather</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q35" value="C">
+                <span class="opt-key">C</span>
+                <span>playing games outside in extremely low temperatures</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q35" value="D">
+                <span class="opt-key">D</span>
+                <span>going into a warm place straight from somewhere much colder</span>
+              </label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q35"></div>
+          </div>
+
+          <!-- Question 36 -->
+          <div class="question-card" id="q36_card" style="margin-top: 1.25rem;">
+            <div class="question-header">
+              <span class="q-number">36</span>
+              <span class="q-text">The writer mentions the weather in India because</span>
+            </div>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="q36" value="A">
+                <span class="opt-key">A</span>
+                <span>he realises the woman wants to change the subject.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q36" value="B">
+                <span class="opt-key">B</span>
+                <span>he wants to keep the conversation going.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q36" value="C">
+                <span class="opt-key">C</span>
+                <span>he finds the weather an interesting topic to discuss.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q36" value="D">
+                <span class="opt-key">D</span>
+                <span>he had wanted to ask the woman about it while she was talking.</span>
+              </label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q36"></div>
+          </div>
+
+          <div class="actions-bar">
+            <button type="button" class="btn-submit" id="submitBtn">Submit & View Diagnostic Feedback</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    All Rights Reserved © by Dr. Jesús Miguel Lima E. • JM ELT Solutions
+  </footer>
+
+  <!-- Modal Diagnostic Feedback -->
+  <div class="modal-overlay" id="feedbackModal">
+    <div class="modal-container">
+      <h2 class="modal-title">Diagnostic Results</h2>
+      <div class="score-display" id="scoreValue">0 / 12</div>
+      <p class="score-breakdown" id="scoreBreakdown">
+        You answered 0 out of 6 questions correctly.<br>
+        (Cambridge B2 Reading: 2 marks per question)
+      </p>
+      <div class="modal-actions">
+        <button type="button" class="btn-modal-primary" id="btnNextBlock">Continue to Reading Part 6 ➔</button>
+        <button type="button" class="btn-modal-secondary" onclick="closeModal()">Review Answers on Screen</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Master Pedagogical Data & Official Cambridge Key (Practice Test 12 Part 5)
+    const PEDAGOGICAL_DATA_B3P5 = {
+      q31: {
+        correct: "B",
+        location: "Paragraph 1: 'When I try to strap myself back in I find she’s picked up the buckle of my belt by accident and we look at each other and laugh.'",
+        whyCorrect: "The woman accidentally picks up the buckle of the narrator's seatbelt instead of her own, and their shared reaction of looking at each other and laughing demonstrates she finds the minor mistake amusing.",
+        trap: "Option A is false because neither had to change seats (they only let the window passenger pass). Option C is incorrect because she does not start working immediately. Option D misinterprets other passengers looking for luggage space as the woman's difficulty."
+      },
+      q32: {
+        correct: "C",
+        location: "Paragraph 3: 'She tells me she works for a multinational company that makes clothing... She’s also trying to complete her PhD thesis, which is on a laptop...'",
+        whyCorrect: "She explains that she works for a clothing multinational while concurrently working to finish her doctoral dissertation (PhD thesis), which means she is currently both studying and working.",
+        trap: "Option A is a distractor: she does not explicitly state her nationality in speech; the writer merely deduces it when catching sight of her Canadian passport. Option B confuses her destination (visiting factories in Thailand) with her primary base, which is Bangalore."
+      },
+      q33: {
+        correct: "D",
+        location: "Paragraph 4: 'The flight to Singapore is three and a half hours. I can’t decide whether to attempt sleep. It is nearly midnight and it hardly seems worth it.'",
+        whyCorrect: "The flight only lasts three and a half hours near midnight; the narrator determines that trying to sleep is hardly worth it because any potential rest would be too short.",
+        trap: "Option B is contradicted: the man in the window seat is fast asleep with eye-shades, neck pillow, and blanket. Options A and C contradict the described atmosphere ('The cabin is quiet... gentle sound of the air conditioning and the murmur of conversations')."
+      },
+      q34: {
+        correct: "C",
+        location: "Paragraph 5: '‘It was OK,’ she says. ‘There are things happening there, it’s not as dull as you might think.’ She tells me sometimes in the winter it would get down to minus sixty.'",
+        whyCorrect: "She mentions Saskatchewan's severe sub-zero conditions and dramatic weather forecasts to illustrate her defense that the region is 'not as dull as you might think'—proving that life there could be lively, memorable, and interesting.",
+        trap: "Option A refers to Montreal, but the extreme minus sixty wind chill was specifically in Saskatchewan. Option D is contradicted: she notes that children 'used to play out in it'."
+      },
+      q35: {
+        correct: "A",
+        location: "Paragraph 8 (Line 52): 'You can get seriously cold and not realise it. When you’re back indoors your face and hands ache as the blood comes back. I suppose that is how polar explorers end up losing toes. They don’t realise how cold they are.'",
+        whyCorrect: "The pronoun 'that' refers back to the physical phenomenon of getting severely cold without feeling or realizing it, which immediately links to polar explorers suffering frostbite and losing toes because 'they don’t realise how cold they are.'",
+        trap: "Options B and C refer to external activities (clothing or outdoor play), whereas 'that' refers directly to the sensory failure to detect severe bodily freezing."
+      },
+      q36: {
+        correct: "B",
+        location: "Paragraphs 9 & 10: '‘I suppose so,’ I say. There’s a pause in the conversation and I wonder what to say next. ‘I guess you get the other extreme living in India.’'",
+        whyCorrect: "Following an awkward silence where the narrator wonders how to proceed, he introduces the weather in India as an easy conversational transition to maintain the flow of dialogue ('keep the conversation going').",
+        trap: "Option A is false because the woman was engaged and showed no desire to abandon the conversation. Option C overstates the narrator's personal interest in meteorological matters."
+      }
+    };
+
+    function getFormattedDate() {
+      const now = new Date();
+      const day = String(now.getDate()).padStart(2, '0');
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const year = now.getFullYear();
+      return `${day}/${month}/${year}`;
+    }
+
+    document.getElementById('submitBtn').addEventListener('click', function () {
+      let correctCount = 0;
+      const totalQuestions = 6;
+      const pointsPerQuestion = 2;
+
+      for (let i = 31; i <= 36; i++) {
+        const qName = 'q' + i;
+        const selected = document.querySelector(`input[name="${qName}"]:checked`);
+        const card = document.getElementById(`${qName}_card`);
+        const labels = card.querySelectorAll('.option-label');
+        const feedbackBox = document.getElementById(`feedback_${qName}`);
+        const data = PEDAGOGICAL_DATA_B3P5[qName];
+
+        labels.forEach(label => {
+          label.classList.remove('is-correct', 'is-wrong');
+          const radio = label.querySelector('input[type="radio"]');
+          if (radio.value === data.correct) {
+            label.classList.add('is-correct');
+          } else if (selected && radio.value === selected.value) {
+            label.classList.add('is-wrong');
+          }
+        });
+
+        const isUserCorrect = selected && selected.value === data.correct;
+        if (isUserCorrect) {
+          correctCount++;
+          feedbackBox.className = "diagnostic-feedback-box correct";
+          feedbackBox.innerHTML = `
+            <div class="feedback-title correct">✓ Well done! Correct Answer: ${data.correct}</div>
+            <div class="feedback-section"><strong>Text Evidence:</strong> ${data.location}</div>
+            <div class="feedback-section"><strong>Pedagogical Analysis:</strong> ${data.whyCorrect}</div>
+          `;
+        } else {
+          feedbackBox.className = "diagnostic-feedback-box incorrect";
+          const chosenLetter = selected ? selected.value : "None";
+          feedbackBox.innerHTML = `
+            <div class="feedback-title incorrect">✗ Incorrect (Your choice: ${chosenLetter} | Correct: ${data.correct})</div>
+            <div class="feedback-section"><strong>Target Clue in Passage:</strong> ${data.location}</div>
+            <div class="feedback-section"><strong>Why This is Correct:</strong> ${data.whyCorrect}</div>
+            <div class="feedback-section"><strong>The Distractor / Trap:</strong> ${data.trap}</div>
+          `;
+        }
+      }
+
+      const totalScore = correctCount * pointsPerQuestion;
+      const maxScore = totalQuestions * pointsPerQuestion;
+
+      // Update Modal Content
+      document.getElementById('scoreValue').textContent = `${totalScore} / ${maxScore}`;
+      document.getElementById('scoreBreakdown').innerHTML = `
+        You scored <strong>${correctCount}</strong> out of <strong>${totalQuestions}</strong> correct answers.<br>
+        (Cambridge B2 Reading: 2 marks per item | Section total: ${totalScore} pts)
+      `;
+
+      // Save to localStorage
+      saveSessionData(totalScore, correctCount);
+
+      // Open Modal
+      document.getElementById('feedbackModal').classList.add('active');
+    });
+
+    function saveSessionData(score, correctCount) {
+      const storageKey = "fce_trainer_parts34_v1";
+      let sessionData = {};
+
+      try {
+        const stored = localStorage.getItem(storageKey);
+        if (stored) {
+          sessionData = JSON.parse(stored);
+        }
+      } catch (e) {
+        sessionData = {};
+      }
+
+      if (!sessionData.unlockedBlocks) {
+        sessionData.unlockedBlocks = [];
+      }
+
+      // Unlock current Block 03 Part 5 and next Part 6
+      if (!sessionData.unlockedBlocks.includes("block_03_part_05")) {
+        sessionData.unlockedBlocks.push("block_03_part_05");
+      }
+      if (!sessionData.unlockedBlocks.includes("block_03_part_06")) {
+        sessionData.unlockedBlocks.push("block_03_part_06");
+      }
+
+      sessionData["block_03_part_05"] = {
+        correct: correctCount,
+        total: score,
+        completed: true,
+        timestamp: getFormattedDate()
+      };
+
+      localStorage.setItem(storageKey, JSON.stringify(sessionData));
+    }
+
+    function closeModal() {
+      document.getElementById('feedbackModal').classList.remove('active');
+    }
+
+    // Direct 1-click navigation to Block 03 Part 06
+    document.getElementById('btnNextBlock').addEventListener('click', function () {
+      window.location.href = './BLOCK 03 - PART 06.html';
+    });
+  </script>
+</body>
+</html>

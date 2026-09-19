@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Block 04 • Reading Part 5 | Dr. Jesús Miguel Lima E. • JM ELT Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #040914;
+      --bg-panel: #0a1324;
+      --bg-card: #101d36;
+      --border-subtle: #1e293b;
+      --border-focus: #3b82f6;
+      --gold-cambridge: #d4af37;
+      --gold-hover: #b89628;
+      --blue-cambridge: #2563eb;
+      --blue-cambridge-light: #60a5fa;
+      --red-cambridge: #c8102e;
+      --success-green: #10b981;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: var(--bg-panel);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-back {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover {
+      color: var(--gold-cambridge);
+    }
+
+    .brand-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+    }
+
+    .module-badge {
+      background: rgba(37, 99, 235, 0.15);
+      border: 1px solid var(--blue-cambridge);
+      color: var(--blue-cambridge-light);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+    }
+
+    .container {
+      flex: 1;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 1.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .module-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .module-heading-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+      letter-spacing: -0.02em;
+    }
+
+    .module-heading-sub {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .task-instruction {
+      background-color: var(--bg-panel);
+      border-left: 4px solid var(--gold-cambridge);
+      padding: 1rem 1.25rem;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .task-instruction strong {
+      color: var(--text-main);
+    }
+
+    .reading-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 1024px) {
+      .reading-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .text-column {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 2.25rem;
+      font-size: 1.05rem;
+      line-height: 1.85;
+      max-height: calc(100vh - 270px);
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-subtle) transparent;
+    }
+
+    .article-header {
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 1rem;
+    }
+
+    .article-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+      margin-bottom: 0.35rem;
+    }
+
+    .article-subtitle {
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    .text-column p {
+      margin-bottom: 1.5rem;
+      text-align: justify;
+    }
+
+    .text-column p:last-child {
+      margin-bottom: 0;
+    }
+
+    .target-line-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      width: 100%;
+      margin: 0.25rem 0;
+    }
+
+    .target-line-text {
+      flex: 1;
+    }
+
+    .line-marker-badge {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--gold-cambridge);
+      font-weight: 700;
+      user-select: none;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      margin-left: 1.5rem;
+    }
+
+    .line-target {
+      color: var(--gold-cambridge);
+      font-weight: 700;
+      border-bottom: 1px dashed var(--gold-cambridge);
+    }
+
+    .questions-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      max-height: calc(100vh - 270px);
+      overflow-y: auto;
+      padding-right: 0.5rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-subtle) transparent;
+    }
+
+    .question-card {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      transition: border-color 0.2s;
+    }
+
+    .question-card:focus-within {
+      border-color: var(--border-focus);
+    }
+
+    .question-header {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .q-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+      flex-shrink: 0;
+    }
+
+    .q-text {
+      font-weight: 600;
+      font-size: 0.98rem;
+      color: var(--text-main);
+    }
+
+    .options-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .option-label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.92rem;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .option-label:hover {
+      border-color: var(--blue-cambridge);
+      background-color: rgba(37, 99, 235, 0.08);
+    }
+
+    .option-label input[type="radio"] {
+      appearance: none;
+      width: 1.15rem;
+      height: 1.15rem;
+      border: 2px solid var(--text-muted);
+      border-radius: 50%;
+      outline: none;
+      display: grid;
+      place-content: center;
+      transition: border-color 0.2s;
+      flex-shrink: 0;
+    }
+
+    .option-label input[type="radio"]::before {
+      content: "";
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 50%;
+      transform: scale(0);
+      transition: transform 0.15s ease-in-out;
+      background-color: var(--gold-cambridge);
+    }
+
+    .option-label input[type="radio"]:checked {
+      border-color: var(--gold-cambridge);
+    }
+
+    .option-label input[type="radio"]:checked::before {
+      transform: scale(1);
+    }
+
+    .opt-key {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: var(--blue-cambridge-light);
+      min-width: 1rem;
+    }
+
+    .diagnostic-feedback-box {
+      display: none;
+      margin-top: 1rem;
+      padding: 1rem 1.25rem;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+
+    .diagnostic-feedback-box.correct {
+      display: block;
+      background: rgba(16, 185, 129, 0.08);
+      border-left: 4px solid var(--success-green);
+      color: #d1fae5;
+    }
+
+    .diagnostic-feedback-box.incorrect {
+      display: block;
+      background: rgba(200, 16, 46, 0.08);
+      border-left: 4px solid var(--red-cambridge);
+      color: #fecdd3;
+    }
+
+    .feedback-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .feedback-title.correct {
+      color: var(--success-green);
+    }
+
+    .feedback-title.incorrect {
+      color: #fb7185;
+    }
+
+    .feedback-section {
+      margin-top: 0.45rem;
+    }
+
+    .feedback-section strong {
+      color: var(--text-main);
+    }
+
+    .actions-bar {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .btn-submit {
+      background-color: var(--gold-cambridge);
+      color: #040914;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.85rem 2rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--gold-hover);
+    }
+
+    .btn-submit:active {
+      transform: scale(0.98);
+    }
+
+    footer {
+      background-color: var(--bg-panel);
+      border-top: 1px solid var(--border-subtle);
+      padding: 1.25rem 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: auto;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(4, 9, 20, 0.85);
+      display: none;
+      place-items: center;
+      z-index: 100;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-overlay.active {
+      display: grid;
+    }
+
+    .modal-container {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--gold-cambridge);
+      border-radius: 8px;
+      width: 90%;
+      max-width: 520px;
+      padding: 2.25rem;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    .modal-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      color: var(--gold-cambridge);
+      margin-bottom: 0.5rem;
+    }
+
+    .score-display {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 1rem 0;
+    }
+
+    .score-breakdown {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+      line-height: 1.5;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .btn-modal-primary {
+      background-color: var(--gold-cambridge);
+      color: #040914;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      padding: 0.85rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 0.95rem;
+      transition: background-color 0.2s;
+    }
+
+    .btn-modal-primary:hover {
+      background-color: var(--gold-hover);
+    }
+
+    .btn-modal-secondary {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      padding: 0.75rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .btn-modal-secondary:hover {
+      border-color: var(--text-muted);
+      color: var(--text-main);
+    }
+
+    .option-label.is-correct {
+      border-color: var(--success-green) !important;
+      background-color: rgba(16, 185, 129, 0.12) !important;
+    }
+
+    .option-label.is-wrong {
+      border-color: var(--red-cambridge) !important;
+      background-color: rgba(200, 16, 46, 0.12) !important;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand-group">
+      <a href="./index.html" class="nav-back">← Roadmap Hub</a>
+      <div class="brand-title">Dr. Jesús Miguel Lima E. • JM ELT Solutions</div>
+    </div>
+    <div class="module-badge">BLOCK 04 • PART 5</div>
+  </header>
+
+  <main class="container">
+    <div class="module-header">
+      <h1 class="module-heading-title">Reading Part 5 • Mock 04</h1>
+      <span class="module-heading-sub">Cambridge English: B2 First (FCE) • Training Block 04 (Part 1 of 2)</span>
+    </div>
+
+    <div class="task-instruction">
+      You are going to read an article about doing a degree course from home. For questions <strong>31–36</strong>, choose the answer (<strong>A</strong>, <strong>B</strong>, <strong>C</strong> or <strong>D</strong>) which you think fits best according to the text. Each correct question awards <strong>2 points</strong> (Total: 12 points).
+    </div>
+
+    <div class="reading-grid">
+      <!-- Left Column: Reading Text -->
+      <section class="text-column">
+        <div class="article-header">
+          <h2 class="article-title">Distance learning</h2>
+          <p class="article-subtitle">Distance learning can give students the chance to work and learn at the same time.</p>
+        </div>
+
+        <p>
+          Nineteen-year-old Jamie Henderson hasn't had what you'd call a typical student experience. Despite wanting to read for a degree in Law, Jamie decided against the usual university route and instead opted to study from home.
+        </p>
+        <p>
+          'With course fees now so high in this country, I was really put off by all the debt I would have when I came out of university,' he says.
+        </p>
+        <p>
+          Having made this decision, Jamie was able to look into alternatives – which in the end turned out to be a degree validated by a university through a distance learning provider.
+        </p>
+        <p>
+          'It was a massive weight off my mind and it was a perfect option for me,' Jamie says. 'It has allowed me to stay near my friends and my family and still work part-time.'
+        </p>
+        <p>
+          Jamie has been able to take on two part-time jobs – alongside his studies – but has also been free to undertake work experience for a law firm, which has led to a full-time job offer before he has even completed his course.
+        </p>
+        <p>
+          Jonathan Smith, who is studying for a BA in Business, chose to study via a distance learning course when already in full-time employment.
+        </p>
+        <p>
+          'I'd studied History, Politics and Economics at school but going to university wasn't even a consideration for me,' he explains. 'My friends were at home, I didn't want to be burdened with debt and I wanted to get straight into a career.'
+        </p>
+        <p>
+          Jonathan completed a Business and Administration Apprenticeship with the local council. While working as a medical administrator, he studied for a diploma and after 12 months had valuable workplace experience.
+        </p>
+        <p>
+          'I'd done so well at work that they kept me on. But after six months getting settled into my new role, I was financially stable and ready to progress my career with a degree. I didn't want to give up what I'd achieved to go to university, so distance learning was an appealing choice.'
+        </p>
+        <p>
+          Obviously, one of the downsides to a distance learning course is that students miss out on the experience of attending university, which means missing out on traditional lectures.
+        </p>
+        <p>
+          'Reading feedback and instructions from a screen isn't quite the same as talking to someone face-to-face,' Jamie says. 'It's also a lot of work to do on your own. I don't have a close circle of friends going through the same thing, so I can't really ask
+          <span class="target-line-row">
+            <span class="target-line-text"><span class="line-target">my peers</span> for help and advice. However, I've found the online</span>
+            <span class="line-marker-badge">line 46</span>
+          </span>
+          student forums helpful and the firm I've been working for have offered advice and guidance when I've needed it.'
+        </p>
+        <p>
+          'I haven't met as many new people as I would have, had I moved away,' says Jamie. 'But I have met new people through work instead. It's just a different type of experience, which is just as rewarding and ultimately, in my opinion, makes me more employable.'
+        </p>
+        <p>
+          For anyone considering a distance learning course, there are several other factors to be considered; perhaps most importantly, motivation.
+        </p>
+        <p>
+          'Distance learning isn't an easy option,' says Dr Philip Hallam, Chief Executive Officer of a distance and online learning provider. 'It's going to be a substantial commitment, not only financially but also on your time. We need to make sure that people have really thought it through and understand why they want a degree. You will need to dig deep occasionally.'
+        </p>
+        <p>
+          Jonathan Smith is confident in the choices he's made regarding education, but believes more could be done to make young people aware of the choices they have.
+        </p>
+        <p>
+          'When I left school with good qualifications, I was shocked at how little advice was available on options other than university. Everyone is different and education should reflect that. I'm glad I took the route I did and I think it is important that more people have the opportunity to study in a way that suits them.'
+        </p>
+      </section>
+
+      <!-- Right Column: Interactive Questions 31-36 -->
+      <section class="questions-column">
+        <form id="readingForm">
+          <!-- Question 31 -->
+          <div class="question-card" id="q31_card">
+            <div class="question-header">
+              <span class="q-number">31</span>
+              <span class="q-text">Why did Jamie decide to do his degree from home?</span>
+            </div>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="q31" value="A">
+                <span class="opt-key">A</span>
+                <span>His friends were also studying by distance learning.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q31" value="B">
+                <span class="opt-key">B</span>
+                <span>He had already been offered a full-time job.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q31" value="C">
+                <span class="opt-key">C</span>
+                <span>He wanted to avoid owing a lot of money.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q31" value="D">
+                <span class="opt-key">D</span>
+                <span>He was unable to obtain a place at university.</span>
+              </label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q31"></div>
+          </div>
+
+          <!-- Question 32 -->
+          <div class="question-card" id="q32_card" style="margin-top: 1.25rem;">
+            <div class="question-header">
+              <span class="q-number">32</span>
+              <span class="q-text">Jonathan’s reason for studying from home was that</span>
+            </div>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="q32" value="A">
+                <span class="opt-key">A</span>
+                <span>he wanted to remain in his job.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q32" value="B">
+                <span class="opt-key">B</span>
+                <span>the job he was doing was badly paid.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q32" value="C">
+                <span class="opt-key">C</span>
+                <span>his preferred subject wasn’t available at university.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q32" value="D">
+                <span class="opt-key">D</span>
+                <span>it was too late for him to apply to university.</span>
+              </label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q32"></div>
+          </div>
+
+          <!-- Question 33 -->
+          <div class="question-card" id="q33_card" style="margin-top: 1.25rem;">
+            <div class="question-header">
+              <span class="q-number">33</span>
+              <span class="q-text">In line 46, what does ‘my peers’ mean?</span>
+            </div>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="q33" value="A">
+                <span class="opt-key">A</span>
+                <span>the university staff</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q33" value="B">
+                <span class="opt-key">B</span>
+                <span>students who have already graduated</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q33" value="C">
+                <span class="opt-key">C</span>
+                <span>the management of the firm</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q33" value="D">
+                <span class="opt-key">D</span>
+                <span>students of the same age</span>
+              </label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q33"></div>
+          </div>
+
+          <!-- Question 34 -->
+          <div class="question-card" id="q34_card" style="margin-top: 1.25rem;">
+            <div class="question-header">
+              <span class="q-number">34</span>
+              <span class="q-text">Jamie says that studying from home has enabled him to</span>
+            </div>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="q34" value="A">
+                <span class="opt-key">A</span>
+                <span>work with people who were also studying at the same time.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q34" value="B">
+                <span class="opt-key">B</span>
+                <span>improve his chances of finding work in the future.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q34" value="C">
+                <span class="opt-key">C</span>
+                <span>get to know more people than he would have done at university.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q34" value="D">
+                <span class="opt-key">D</span>
+                <span>concentrate on studying rather than spend time socializing.</span>
+              </label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q34"></div>
+          </div>
+
+          <!-- Question 35 -->
+          <div class="question-card" id="q35_card" style="margin-top: 1.25rem;">
+            <div class="question-header">
+              <span class="q-number">35</span>
+              <span class="q-text">Dr Hallam recommends distance learning for students who</span>
+            </div>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="q35" value="A">
+                <span class="opt-key">A</span>
+                <span>dislike having to work very hard.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q35" value="B">
+                <span class="opt-key">B</span>
+                <span>have little time available for study.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q35" value="C">
+                <span class="opt-key">C</span>
+                <span>cannot afford to go to university.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q35" value="D">
+                <span class="opt-key">D</span>
+                <span>know exactly what it involves.</span>
+              </label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q35"></div>
+          </div>
+
+          <!-- Question 36 -->
+          <div class="question-card" id="q36_card" style="margin-top: 1.25rem;">
+            <div class="question-header">
+              <span class="q-number">36</span>
+              <span class="q-text">In the last paragraph, Jonathan says that young people should</span>
+            </div>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="q36" value="A">
+                <span class="opt-key">A</span>
+                <span>be advised not to go to university.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q36" value="B">
+                <span class="opt-key">B</span>
+                <span>be made more aware of the choices they have.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q36" value="C">
+                <span class="opt-key">C</span>
+                <span>apply for work with employers like his.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q36" value="D">
+                <span class="opt-key">D</span>
+                <span>ensure they get high grades at school.</span>
+              </label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q36"></div>
+          </div>
+
+          <div class="actions-bar">
+            <button type="button" class="btn-submit" id="submitBtn">Submit & View Diagnostic Feedback</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    All Rights Reserved © by Dr. Jesús Miguel Lima E. • JM ELT Solutions
+  </footer>
+
+  <!-- Modal Feedback -->
+  <div class="modal-overlay" id="feedbackModal">
+    <div class="modal-container">
+      <h2 class="modal-title">Diagnostic Results</h2>
+      <div class="score-display" id="scoreValue">0 / 12</div>
+      <p class="score-breakdown" id="scoreBreakdown">
+        You answered 0 out of 6 questions correctly.<br>
+        (Cambridge B2 Reading: 2 marks per question)
+      </p>
+      <div class="modal-actions">
+        <button type="button" class="btn-modal-primary" id="btnNextBlock">Continue to Reading Part 6 ➔</button>
+        <button type="button" class="btn-modal-secondary" onclick="closeModal()">Review Answers on Screen</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Master Pedagogical Data & Official Cambridge Key (Practice Test 11 Part 5: 31C, 32A, 33D, 34B, 35D, 36B)
+    const PEDAGOGICAL_DATA_B4P5 = {
+      q31: {
+        correct: "C",
+        location: "Paragraph 2: ''With course fees now so high in this country, I was really put off by all the debt I would have when I came out of university,''",
+        whyCorrect: "Jamie explicitly states that he was deterred by the prospect of heavy student debt, choosing to study from home specifically to avoid owing a significant amount of money.",
+        trap: "Option B is incorrect because the full-time job offer came as a result of his work experience during the course, not before deciding to study from home. Option D is completely unsupported."
+      },
+      q32: {
+        correct: "A",
+        location: "Paragraph 9: ''I didn't want to give up what I'd achieved to go to university, so distance learning was an appealing choice.''",
+        whyCorrect: "Jonathan had achieved a stable, permanent role after his apprenticeship and medical administrator work; he opted for distance learning because he wanted to keep progressing his career without quitting his job.",
+        trap: "Option B contradicts his statement that he was 'financially stable'. Option C is false as he pursued a standard BA in Business."
+      },
+      q33: {
+        correct: "D",
+        location: "Line 46 / Paragraph 11: ''I don't have a close circle of friends going through the same thing, so I can't really ask my peers for help and advice.''",
+        whyCorrect: "The noun 'peers' refers to social or educational equals—specifically fellow students of similar age or stage in life who are going through the same university experience.",
+        trap: "Options A and C confuse peer students with academic supervisors or corporate employers. Option B refers to graduates rather than fellow contemporaries."
+      },
+      q34: {
+        correct: "B",
+        location: "Paragraph 12: ''It's just a different type of experience, which is just as rewarding and ultimately, in my opinion, makes me more employable.''",
+        whyCorrect: "Jamie notes that combining distance studies with hands-on workplace networking and practical experience makes him 'more employable', improving his prospects of securing future employment.",
+        trap: "Option C contradicts his admission that he has NOT met as many people as he would have on campus ('I haven’t met as many new people as I would have, had I moved away'). Option A is inaccurate as his work colleagues were established professionals."
+      },
+      q35: {
+        correct: "D",
+        location: "Paragraph 14: ''We need to make sure that people have really thought it through and understand why they want a degree. You will need to dig deep occasionally.''",
+        whyCorrect: "Dr Hallam stresses that distance learning demands substantial commitment and recommends it only for individuals who have 'really thought it through' and know precisely what the dedication and workload entail.",
+        trap: "Option A is the direct opposite: distance learning requires students to 'dig deep' and work independently. Option B is contradicted because it requires a 'substantial commitment... on your time'."
+      },
+      q36: {
+        correct: "B",
+        location: "Paragraphs 15 & 16: '...believes more could be done to make young people aware of the choices they have. 'When I left school with good qualifications, I was shocked at how little advice was available on options other than university.''",
+        whyCorrect: "Jonathan emphasizes that schools and advisors should inform school leavers about alternative routes beyond traditional university, ensuring young people are fully aware of all available educational choices.",
+        trap: "Option A overstates his view: he does not discourage university for everyone, but advocates that 'education should reflect that' individuals have diverse needs."
+      }
+    };
+
+    function getFormattedDate() {
+      const now = new Date();
+      const day = String(now.getDate()).padStart(2, '0');
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const year = now.getFullYear();
+      return `${day}/${month}/${year}`;
+    }
+
+    document.getElementById('submitBtn').addEventListener('click', function () {
+      let correctCount = 0;
+      const totalQuestions = 6;
+      const pointsPerQuestion = 2;
+
+      for (let i = 31; i <= 36; i++) {
+        const qName = 'q' + i;
+        const selected = document.querySelector(`input[name="${qName}"]:checked`);
+        const card = document.getElementById(`${qName}_card`);
+        const labels = card.querySelectorAll('.option-label');
+        const feedbackBox = document.getElementById(`feedback_${qName}`);
+        const data = PEDAGOGICAL_DATA_B4P5[qName];
+
+        labels.forEach(label => {
+          label.classList.remove('is-correct', 'is-wrong');
+          const radio = label.querySelector('input[type="radio"]');
+          if (radio.value === data.correct) {
+            label.classList.add('is-correct');
+          } else if (selected && radio.value === selected.value) {
+            label.classList.add('is-wrong');
+          }
+        });
+
+        const isUserCorrect = selected && selected.value === data.correct;
+        if (isUserCorrect) {
+          correctCount++;
+          feedbackBox.className = "diagnostic-feedback-box correct";
+          feedbackBox.innerHTML = `
+            <div class="feedback-title correct">✓ Well done! Correct Answer: ${data.correct}</div>
+            <div class="feedback-section"><strong>Text Evidence:</strong> ${data.location}</div>
+            <div class="feedback-section"><strong>Pedagogical Analysis:</strong> ${data.whyCorrect}</div>
+          `;
+        } else {
+          feedbackBox.className = "diagnostic-feedback-box incorrect";
+          const chosenLetter = selected ? selected.value : "None";
+          feedbackBox.innerHTML = `
+            <div class="feedback-title incorrect">✗ Incorrect (Your choice: ${chosenLetter} | Correct: ${data.correct})</div>
+            <div class="feedback-section"><strong>Target Clue in Passage:</strong> ${data.location}</div>
+            <div class="feedback-section"><strong>Why This is Correct:</strong> ${data.whyCorrect}</div>
+            <div class="feedback-section"><strong>The Distractor / Trap:</strong> ${data.trap}</div>
+          `;
+        }
+      }
+
+      const totalScore = correctCount * pointsPerQuestion;
+      const maxScore = totalQuestions * pointsPerQuestion;
+
+      document.getElementById('scoreValue').textContent = `${totalScore} / ${maxScore}`;
+      document.getElementById('scoreBreakdown').innerHTML = `
+        You scored <strong>${correctCount}</strong> out of <strong>${totalQuestions}</strong> correct answers.<br>
+        (Cambridge B2 Reading: 2 marks per item | Section total: ${totalScore} pts)
+      `;
+
+      saveSessionData(totalScore, correctCount);
+      document.getElementById('feedbackModal').classList.add('active');
+    });
+
+    function saveSessionData(score, correctCount) {
+      const storageKey = "fce_trainer_parts34_v1";
+      let sessionData = {};
+
+      try {
+        const stored = localStorage.getItem(storageKey);
+        if (stored) {
+          sessionData = JSON.parse(stored);
+        }
+      } catch (e) {
+        sessionData = {};
+      }
+
+      if (!sessionData.unlockedBlocks) {
+        sessionData.unlockedBlocks = [];
+      }
+
+      if (!sessionData.unlockedBlocks.includes("block_04_part_05")) {
+        sessionData.unlockedBlocks.push("block_04_part_05");
+      }
+      if (!sessionData.unlockedBlocks.includes("block_04_part_06")) {
+        sessionData.unlockedBlocks.push("block_04_part_06");
+      }
+
+      sessionData["block_04_part_05"] = {
+        correct: correctCount,
+        total: score,
+        completed: true,
+        timestamp: getFormattedDate()
+      };
+
+      localStorage.setItem(storageKey, JSON.stringify(sessionData));
+    }
+
+    function closeModal() {
+      document.getElementById('feedbackModal').classList.remove('active');
+    }
+
+    document.getElementById('btnNextBlock').addEventListener('click', function () {
+      window.location.href = './BLOCK 04 - PART 06.html';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Block 02 • Reading Part 6 | Dr. Jesús Miguel Lima E. • JM ELT Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #040914;
+      --bg-panel: #0a1324;
+      --bg-card: #101d36;
+      --border-subtle: #1e293b;
+      --border-focus: #3b82f6;
+      --gold-cambridge: #d4af37;
+      --gold-hover: #b89628;
+      --blue-cambridge: #2563eb;
+      --blue-cambridge-light: #60a5fa;
+      --red-cambridge: #c8102e;
+      --success-green: #10b981;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: var(--bg-panel);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-back {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover {
+      color: var(--gold-cambridge);
+    }
+
+    .brand-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+    }
+
+    .module-badge {
+      background: rgba(37, 99, 235, 0.15);
+      border: 1px solid var(--blue-cambridge);
+      color: var(--blue-cambridge-light);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+    }
+
+    .container {
+      flex: 1;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 1.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .module-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .module-heading-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+      letter-spacing: -0.02em;
+    }
+
+    .module-heading-sub {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .task-instruction {
+      background-color: var(--bg-panel);
+      border-left: 4px solid var(--gold-cambridge);
+      padding: 1rem 1.25rem;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .task-instruction strong {
+      color: var(--text-main);
+    }
+
+    .reading-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 1024px) {
+      .reading-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .text-column {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 2.25rem;
+      font-size: 1.05rem;
+      line-height: 1.85;
+      max-height: calc(100vh - 270px);
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-subtle) transparent;
+    }
+
+    .article-header {
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 1rem;
+    }
+
+    .article-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+      margin-bottom: 0.35rem;
+    }
+
+    .article-subtitle {
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    .text-column p {
+      margin-bottom: 1.5rem;
+      text-align: justify;
+    }
+
+    .text-column p:last-child {
+      margin-bottom: 0;
+    }
+
+    .gap-target {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.2rem 0.5rem;
+      background-color: rgba(212, 175, 55, 0.1);
+      border: 1px solid var(--gold-cambridge);
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+      margin: 0 0.25rem;
+    }
+
+    .gap-target select {
+      background-color: var(--bg-card);
+      border: 1px solid var(--gold-cambridge);
+      color: var(--gold-cambridge);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .gap-target select:focus {
+      border-color: var(--blue-cambridge-light);
+    }
+
+    .sidebar-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      max-height: calc(100vh - 270px);
+      overflow-y: auto;
+      padding-right: 0.5rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-subtle) transparent;
+    }
+
+    .sentences-card {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+
+    .sentences-card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 0.5rem;
+    }
+
+    .sentence-item {
+      display: flex;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      margin-bottom: 0.65rem;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .sentence-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .sentence-letter {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: var(--blue-cambridge-light);
+      flex-shrink: 0;
+      min-width: 1.2rem;
+    }
+
+    .feedback-panel {
+      display: none;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .feedback-item {
+      background-color: var(--bg-panel);
+      border-radius: 6px;
+      padding: 1rem;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .feedback-item.correct {
+      border-left: 4px solid var(--success-green);
+      background: rgba(16, 185, 129, 0.08);
+      color: #d1fae5;
+    }
+
+    .feedback-item.incorrect {
+      border-left: 4px solid var(--red-cambridge);
+      background: rgba(200, 16, 46, 0.08);
+      color: #fecdd3;
+    }
+
+    .feedback-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .feedback-title.correct {
+      color: var(--success-green);
+    }
+
+    .feedback-title.incorrect {
+      color: #fb7185;
+    }
+
+    .feedback-row {
+      margin-top: 0.35rem;
+    }
+
+    .feedback-row strong {
+      color: var(--text-main);
+    }
+
+    .actions-bar {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .btn-submit {
+      background-color: var(--gold-cambridge);
+      color: #040914;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.85rem 2rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--gold-hover);
+    }
+
+    .btn-submit:active {
+      transform: scale(0.98);
+    }
+
+    footer {
+      background-color: var(--bg-panel);
+      border-top: 1px solid var(--border-subtle);
+      padding: 1.25rem 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: auto;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(4, 9, 20, 0.85);
+      display: none;
+      place-items: center;
+      z-index: 100;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-overlay.active {
+      display: grid;
+    }
+
+    .modal-container {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--gold-cambridge);
+      border-radius: 8px;
+      width: 90%;
+      max-width: 520px;
+      padding: 2.25rem;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    .modal-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      color: var(--gold-cambridge);
+      margin-bottom: 0.5rem;
+    }
+
+    .score-display {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 1rem 0;
+    }
+
+    .score-breakdown {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+      line-height: 1.5;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .btn-modal-primary {
+      background-color: var(--gold-cambridge);
+      color: #040914;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      padding: 0.85rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 0.95rem;
+      transition: background-color 0.2s;
+    }
+
+    .btn-modal-primary:hover {
+      background-color: var(--gold-hover);
+    }
+
+    .btn-modal-secondary {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      padding: 0.75rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .btn-modal-secondary:hover {
+      border-color: var(--text-muted);
+      color: var(--text-main);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand-group">
+      <a href="./index.html" class="nav-back">← Roadmap Hub</a>
+      <div class="brand-title">Dr. Jesús Miguel Lima E. • JM ELT Solutions</div>
+    </div>
+    <div class="module-badge">BLOCK 02 • PART 6</div>
+  </header>
+
+  <main class="container">
+    <div class="module-header">
+      <h1 class="module-heading-title">Reading Part 6 • Mock 02</h1>
+      <span class="module-heading-sub">Cambridge English: B2 First (FCE) • Training Block 02 (Part 2 of 2: Gapped Text)</span>
+    </div>
+
+    <div class="task-instruction">
+      You are going to read an article about the effects of electronic devices on human interaction. Six sentences have been removed from the article. Choose from the sentences <strong>A–G</strong> the one which fits each gap (<strong>37–42</strong>). There is one extra sentence which you do not need to use. Each correct question awards <strong>2 points</strong> (Total: 12 points).
+    </div>
+
+    <div class="reading-grid">
+      <!-- Left Column: Gapped Text Article -->
+      <section class="text-column">
+        <div class="article-header">
+          <h2 class="article-title">Have we lost the ability to focus on a single task?</h2>
+          <p class="article-subtitle">Daniel Goleman thinks so. Here, the bestselling science writer argues that we have become a species distracted by modern technology.</p>
+        </div>
+
+        <p>
+          The little girl’s head only came up to her mother’s waist as she hugged her mum, and held on fiercely as they rode a ferry to a holiday island. The mother, though, didn’t respond to her, or even seem to notice: she was absorbed in her tablet computer all the while.
+        </p>
+        <p>
+          Something similar happened a few minutes later, as I was getting into a shared taxi van with nine students who that night were journeying to a weekend getaway. Within a minute of taking their seats in the dark van, dim lights came on as every one of them checked a phone or tablet.
+          <span class="gap-target">
+            [ 37
+            <select id="gap_37" aria-label="Gap 37 selection">
+              <option value="">--</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+            </select>
+            ]
+          </span>
+          But mostly there was silence.
+        </p>
+        <p>
+          The indifference of that mother, and the silence among the students, are symptoms of how technology captures our attention and disrupts our connections. Teenagers, the future of humanity, are at the centre. In the early years of this decade their text message monthly count rose to 3,417, double the number just a few years earlier.
+          <span class="gap-target">
+            [ 38
+            <select id="gap_38" aria-label="Gap 38 selection">
+              <option value="">--</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+            </select>
+            ]
+          </span>
+          The average American teen now gets and sends more than a hundred texts a day, about 10 every waking hour. I’ve seen a kid texting while he rode his bike.
+        </p>
+        <p>
+          Digital interaction comes at a cost in face time with real people, through which we learn to understand non-verbal communication such as body language. The new generation of natives in this digital world may be skilful on the keyboard, but they can be hopeless when it comes to reading behaviour face-to-face, in real time.
+          <span class="gap-target">
+            [ 39
+            <select id="gap_39" aria-label="Gap 39 selection">
+              <option value="">--</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+            </select>
+            ]
+          </span>
+          Today’s children are growing up in a new reality, one where they are connecting more with machines and less with people than has ever been true in human history.
+        </p>
+        <p>
+          Then there are the costs of attention decline among adults. In Mexico, an advertising representative for a large radio network complains, ‘A few years ago you could make a five-minute video for your presentation at an advertising agency. Today you have to keep it to a minute and a half.
+          <span class="gap-target">
+            [ 40
+            <select id="gap_40" aria-label="Gap 40 selection">
+              <option value="">--</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+            </select>
+            ]
+          </span>’
+          Faced with problems like this, some workplaces have banned laptops, mobile phones, and other digital tools during meetings.
+        </p>
+        <p>
+          A college professor who teaches film tells me he’s reading a biography of one of his heroes, the legendary French director François Truffaut. But, he finds, ‘I can’t read more than two pages at a time.
+          <span class="gap-target">
+            [ 41
+            <select id="gap_41" aria-label="Gap 41 selection">
+              <option value="">--</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+            </select>
+            ]
+          </span>
+          I think I’m losing my ability to maintain concentration on anything serious.’
+        </p>
+        <p>
+          After not checking her mobile for a while, a publishing executive confesses she gets ‘a nervous feeling. You miss that moment of excitement you get when there’s a text. You know it’s not right to check your phone when you’re with someone, but it’s an addiction.’ So she and her husband have an agreement: ‘When we get home from work we put our phones in a drawer.
+          <span class="gap-target">
+            [ 42
+            <select id="gap_42" aria-label="Gap 42 selection">
+              <option value="">--</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+            </select>
+            ]
+          </span>
+          But now we try to get closer to each other instead. We talk.’
+        </p>
+      </section>
+
+      <!-- Right Column: Sentence Pool & Feedback Display -->
+      <section class="sidebar-column">
+        <div class="sentences-card">
+          <h3 class="sentences-card-title">Removed Sentences (A–G)</h3>
+
+          <div class="sentence-item">
+            <span class="sentence-letter">A</span>
+            <span>This is why they are unaware they upset others by stopping to read a text in the middle of a conversation.</span>
+          </div>
+          <div class="sentence-item">
+            <span class="sentence-letter">B</span>
+            <span>If you don’t, everyone starts checking for messages.</span>
+          </div>
+          <div class="sentence-item">
+            <span class="sentence-letter">C</span>
+            <span>After that the temptation to go online and see if I have any new email becomes impossible to resist.</span>
+          </div>
+          <div class="sentence-item">
+            <span class="sentence-letter">D</span>
+            <span>A few words were occasionally muttered while they texted or looked through social media pages.</span>
+          </div>
+          <div class="sentence-item">
+            <span class="sentence-letter">E</span>
+            <span>If it’s in front of me I get anxious; I’ve just got to check it.</span>
+          </div>
+          <div class="sentence-item">
+            <span class="sentence-letter">F</span>
+            <span>In extreme cases, some sleep all day and play these games all night, rarely stopping even to eat.</span>
+          </div>
+          <div class="sentence-item">
+            <span class="sentence-letter">G</span>
+            <span>Meanwhile, studies show, the average time they spent talking on the phone dropped significantly.</span>
+          </div>
+        </div>
+
+        <div class="actions-bar">
+          <button type="button" class="btn-submit" id="submitBtn">Submit & View Diagnostic Feedback</button>
+        </div>
+
+        <div class="feedback-panel" id="feedbackPanel"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    All Rights Reserved © by Dr. Jesús Miguel Lima E. • JM ELT Solutions
+  </footer>
+
+  <!-- Modal Diagnostic Feedback -->
+  <div class="modal-overlay" id="feedbackModal">
+    <div class="modal-container">
+      <h2 class="modal-title">Diagnostic Results</h2>
+      <div class="score-display" id="scoreValue">0 / 12</div>
+      <p class="score-breakdown" id="scoreBreakdown">
+        You answered 0 out of 6 questions correctly.<br>
+        (Cambridge B2 Reading: 2 marks per question)
+      </p>
+      <div class="modal-actions">
+        <button type="button" class="btn-modal-primary" id="btnNextBlock">Continue to Block 03 • Reading Part 5 ➔</button>
+        <button type="button" class="btn-modal-secondary" onclick="closeModal()">Review Answers on Screen</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Master Pedagogical Data & Official Cambridge Key (Test 4 Part 6)
+    const PEDAGOGICAL_DATA_B2P6 = {
+      37: {
+        correct: "D",
+        leadIn: "Before gap: '...dim lights came on as every one of them checked a phone or tablet.' After gap: 'But mostly there was silence.'",
+        whyCorrect: "Sentence D describes the minimal interaction occurring in the van ('A few words were occasionally muttered...'), which forms a direct cohesive contrast with the subsequent sentence: 'But mostly there was silence.'",
+        trap: "Sentence A or F disrupts the narrative flow describing the immediate scene inside the taxi van."
+      },
+      38: {
+        correct: "G",
+        leadIn: "Before gap: '...their text message monthly count rose to 3,417, double the number just a few years earlier.' After gap: 'The average American teen now gets and sends more than a hundred texts a day...'",
+        whyCorrect: "Sentence G introduces a statistical comparison using 'Meanwhile, studies show': while monthly text message figures doubled, voice calling time 'dropped significantly'.",
+        trap: "Sentence F focuses on extreme video gaming, which is unrelated to the numerical data on texting vs calling trends."
+      },
+      39: {
+        correct: "A",
+        leadIn: "Before gap: 'The new generation... can be hopeless when it comes to reading behaviour face-to-face, in real time.' After gap: 'Today’s children are growing up in a new reality...'",
+        whyCorrect: "Sentence A provides an immediate consequence of failing to interpret social cues: 'This is why they are unaware they upset others by stopping to read a text in the middle of a conversation.'",
+        trap: "Sentence B refers to corporate presentation rules, not teenagers' social unawareness during personal interactions."
+      },
+      40: {
+        correct: "B",
+        leadIn: "Before gap: 'Today you have to keep it to a minute and a half.' (Quote continuation before closing quote). After gap: 'Faced with problems like this, some workplaces have banned laptops...'",
+        whyCorrect: "Sentence B completes the executive's conditional statement inside the quotation marks: 'If you don’t [keep it to 1.5 minutes], everyone starts checking for messages.'",
+        trap: "Sentence C shifts the speaker from an advertising representative explaining agency clients to a personal reading habit."
+      },
+      41: {
+        correct: "C",
+        leadIn: "Before gap: 'I can’t read more than two pages at a time.' After gap: 'I think I’m losing my ability to maintain concentration on anything serious.'",
+        whyCorrect: "Sentence C elaborates on the reading interruption: 'After that [reading two pages] the temptation to go online and see if I have any new email becomes impossible to resist.'",
+        trap: "Sentence E belongs to the marital agreement narrative in the subsequent paragraph, not the film professor's book reading."
+      },
+      42: {
+        correct: "E",
+        leadIn: "Before gap: 'When we get home from work we put our phones in a drawer.' After gap: 'But now we try to get closer to each other instead. We talk.'",
+        whyCorrect: "Sentence E explains why the drawer rule is necessary: 'If it’s in front of me I get anxious; I’ve just got to check it.'",
+        trap: "Sentence D describes third-party students, whereas the speaker here is speaking in the first person about her domestic phone habit."
+      }
+    };
+
+    function getFormattedDate() {
+      const now = new Date();
+      const day = String(now.getDate()).padStart(2, '0');
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const year = now.getFullYear();
+      return `${day}/${month}/${year}`;
+    }
+
+    document.getElementById('submitBtn').addEventListener('click', function () {
+      let correctCount = 0;
+      const totalGaps = 6;
+      const pointsPerGap = 2;
+      const feedbackPanel = document.getElementById('feedbackPanel');
+      feedbackPanel.innerHTML = '';
+
+      for (let gapNum = 37; gapNum <= 42; gapNum++) {
+        const selectElem = document.getElementById(`gap_${gapNum}`);
+        const userChoice = selectElem.value;
+        const data = PEDAGOGICAL_DATA_B2P6[gapNum];
+        const isCorrect = userChoice === data.correct;
+
+        if (isCorrect) {
+          correctCount++;
+          selectElem.style.borderColor = 'var(--success-green)';
+          selectElem.style.color = 'var(--success-green)';
+        } else {
+          selectElem.style.borderColor = 'var(--red-cambridge)';
+          selectElem.style.color = '#fb7185';
+        }
+
+        // Build Diagnostic Feedback Card
+        const itemDiv = document.createElement('div');
+        itemDiv.className = `feedback-item ${isCorrect ? 'correct' : 'incorrect'}`;
+        itemDiv.innerHTML = `
+          <div class="feedback-title ${isCorrect ? 'correct' : 'incorrect'}">
+            ${isCorrect ? '✓ Gap ' + gapNum + ': Well done!' : '✗ Gap ' + gapNum + ': Incorrect'} (Selected: ${userChoice || 'Empty'} | Correct: ${data.correct})
+          </div>
+          <div class="feedback-row"><strong>Context Clues:</strong> ${data.leadIn}</div>
+          <div class="feedback-row"><strong>Cohesion Analysis:</strong> ${data.whyCorrect}</div>
+          ${!isCorrect ? `<div class="feedback-row"><strong>Common Trap:</strong> ${data.trap}</div>` : ''}
+        `;
+        feedbackPanel.appendChild(itemDiv);
+      }
+
+      feedbackPanel.style.display = 'flex';
+
+      const totalScore = correctCount * pointsPerGap;
+      const maxScore = totalGaps * pointsPerGap;
+
+      // Update Modal Content
+      document.getElementById('scoreValue').textContent = `${totalScore} / ${maxScore}`;
+      document.getElementById('scoreBreakdown').innerHTML = `
+        You scored <strong>${correctCount}</strong> out of <strong>${totalGaps}</strong> gaps correctly.<br>
+        (Cambridge B2 Reading Part 6: 2 marks per item | Section total: ${totalScore} pts)
+      `;
+
+      // Save to localStorage
+      saveSessionData(totalScore, correctCount);
+
+      // Open Modal
+      document.getElementById('feedbackModal').classList.add('active');
+    });
+
+    function saveSessionData(score, correctCount) {
+      const storageKey = "fce_trainer_parts34_v1";
+      let sessionData = {};
+
+      try {
+        const stored = localStorage.getItem(storageKey);
+        if (stored) {
+          sessionData = JSON.parse(stored);
+        }
+      } catch (e) {
+        sessionData = {};
+      }
+
+      if (!sessionData.unlockedBlocks) {
+        sessionData.unlockedBlocks = [];
+      }
+
+      // Unlock current Part 6 and next Block (Block 03 Part 5)
+      if (!sessionData.unlockedBlocks.includes("block_02_part_06")) {
+        sessionData.unlockedBlocks.push("block_02_part_06");
+      }
+      if (!sessionData.unlockedBlocks.includes("block_03_part_05")) {
+        sessionData.unlockedBlocks.push("block_03_part_05");
+      }
+
+      sessionData["block_02_part_06"] = {
+        correct: correctCount,
+        total: score,
+        completed: true,
+        timestamp: getFormattedDate()
+      };
+
+      localStorage.setItem(storageKey, JSON.stringify(sessionData));
+    }
+
+    function closeModal() {
+      document.getElementById('feedbackModal').classList.remove('active');
+    }
+
+    // Direct 1-click navigation to Block 03 Reading Part 5
+    document.getElementById('btnNextBlock').addEventListener('click', function () {
+      window.location.href = './BLOCK 03 - PART 05.html';
+    });
+  </script>
+</body>
+</html>

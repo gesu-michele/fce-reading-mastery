@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Block 04 • Reading Part 6 | Dr. Jesús Miguel Lima E. • JM ELT Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #040914;
+      --bg-panel: #0a1324;
+      --bg-card: #101d36;
+      --border-subtle: #1e293b;
+      --border-focus: #3b82f6;
+      --gold-cambridge: #d4af37;
+      --gold-hover: #b89628;
+      --blue-cambridge: #2563eb;
+      --blue-cambridge-light: #60a5fa;
+      --red-cambridge: #c8102e;
+      --success-green: #10b981;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: var(--bg-panel);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-back {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover {
+      color: var(--gold-cambridge);
+    }
+
+    .brand-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+    }
+
+    .module-badge {
+      background: rgba(37, 99, 235, 0.15);
+      border: 1px solid var(--blue-cambridge);
+      color: var(--blue-cambridge-light);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+    }
+
+    .container {
+      flex: 1;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 1.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .module-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .module-heading-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+      letter-spacing: -0.02em;
+    }
+
+    .module-heading-sub {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .task-instruction {
+      background-color: var(--bg-panel);
+      border-left: 4px solid var(--gold-cambridge);
+      padding: 1rem 1.25rem;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .task-instruction strong {
+      color: var(--text-main);
+    }
+
+    .reading-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 1024px) {
+      .reading-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .text-column {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 2.25rem;
+      font-size: 1.05rem;
+      line-height: 1.85;
+      max-height: calc(100vh - 270px);
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-subtle) transparent;
+    }
+
+    .article-header {
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 1rem;
+    }
+
+    .article-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+      margin-bottom: 0.35rem;
+    }
+
+    .article-subtitle {
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    .text-column p {
+      margin-bottom: 1.5rem;
+      text-align: justify;
+    }
+
+    .text-column p:last-child {
+      margin-bottom: 0;
+    }
+
+    .gap-target {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.2rem 0.5rem;
+      background-color: rgba(212, 175, 55, 0.1);
+      border: 1px solid var(--gold-cambridge);
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+      margin: 0 0.25rem;
+    }
+
+    .gap-target select {
+      background-color: var(--bg-card);
+      border: 1px solid var(--gold-cambridge);
+      color: var(--gold-cambridge);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .gap-target select:focus {
+      border-color: var(--blue-cambridge-light);
+    }
+
+    .sidebar-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      max-height: calc(100vh - 270px);
+      overflow-y: auto;
+      padding-right: 0.5rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-subtle) transparent;
+    }
+
+    .sentences-card {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+
+    .sentences-card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 0.5rem;
+    }
+
+    .sentence-item {
+      display: flex;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      margin-bottom: 0.65rem;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .sentence-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .sentence-letter {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: var(--blue-cambridge-light);
+      flex-shrink: 0;
+      min-width: 1.2rem;
+    }
+
+    .feedback-panel {
+      display: none;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .feedback-item {
+      background-color: var(--bg-panel);
+      border-radius: 6px;
+      padding: 1rem;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .feedback-item.correct {
+      border-left: 4px solid var(--success-green);
+      background: rgba(16, 185, 129, 0.08);
+      color: #d1fae5;
+    }
+
+    .feedback-item.incorrect {
+      border-left: 4px solid var(--red-cambridge);
+      background: rgba(200, 16, 46, 0.08);
+      color: #fecdd3;
+    }
+
+    .feedback-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .feedback-title.correct {
+      color: var(--success-green);
+    }
+
+    .feedback-title.incorrect {
+      color: #fb7185;
+    }
+
+    .feedback-row {
+      margin-top: 0.35rem;
+    }
+
+    .feedback-row strong {
+      color: var(--text-main);
+    }
+
+    .actions-bar {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .btn-submit {
+      background-color: var(--gold-cambridge);
+      color: #040914;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.85rem 2rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--gold-hover);
+    }
+
+    .btn-submit:active {
+      transform: scale(0.98);
+    }
+
+    footer {
+      background-color: var(--bg-panel);
+      border-top: 1px solid var(--border-subtle);
+      padding: 1.25rem 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: auto;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(4, 9, 20, 0.85);
+      display: none;
+      place-items: center;
+      z-index: 100;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-overlay.active {
+      display: grid;
+    }
+
+    .modal-container {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--gold-cambridge);
+      border-radius: 8px;
+      width: 90%;
+      max-width: 520px;
+      padding: 2.25rem;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    .modal-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      color: var(--gold-cambridge);
+      margin-bottom: 0.5rem;
+    }
+
+    .score-display {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 1rem 0;
+    }
+
+    .score-breakdown {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+      line-height: 1.5;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .btn-modal-primary {
+      background-color: var(--gold-cambridge);
+      color: #040914;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      padding: 0.85rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 0.95rem;
+      transition: background-color 0.2s;
+    }
+
+    .btn-modal-primary:hover {
+      background-color: var(--gold-hover);
+    }
+
+    .btn-modal-secondary {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      padding: 0.75rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .btn-modal-secondary:hover {
+      border-color: var(--text-muted);
+      color: var(--text-main);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand-group">
+      <a href="./index.html" class="nav-back">← Roadmap Hub</a>
+      <div class="brand-title">Dr. Jesús Miguel Lima E. • JM ELT Solutions</div>
+    </div>
+    <div class="module-badge">BLOCK 04 • PART 6</div>
+  </header>
+
+  <main class="container">
+    <div class="module-header">
+      <h1 class="module-heading-title">Reading Part 6 • Mock 04</h1>
+      <span class="module-heading-sub">Cambridge English: B2 First (FCE) • Training Block 04 (Part 2 of 2: Gapped Text)</span>
+    </div>
+
+    <div class="task-instruction">
+      You are going to read an article about dreaming. Six sentences have been removed from the article. Choose from the sentences <strong>A–G</strong> the one which fits each gap (<strong>37–42</strong>). There is one extra sentence which you do not need to use. Each correct question awards <strong>2 points</strong> (Total: 12 points).
+    </div>
+
+    <div class="reading-grid">
+      <!-- Left Column: Gapped Text Article -->
+      <section class="text-column">
+        <div class="article-header">
+          <h2 class="article-title">Can we control our dreams?</h2>
+          <p class="article-subtitle">Strange as it seems, the answer is yes – and it could help us solve our problems.</p>
+        </div>
+
+        <p>
+          Do we have any influence over the often strange, wandering, night-time journeys in our mind? Could we learn to dream differently, getting rid of repeated nightmares or finding answers to the problems that we cannot solve in daylight hours? Strange though it may seem, the answer is yes. Research suggests that, using practical and psychological techniques, we can influence our dreams and use them to draw on the vast, largely unused resource of our unconscious mind.
+        </p>
+        <p>
+          Deirdre Barrett, an assistant clinical professor of psychology at Harvard Medical School, is convinced we all have the power to manage our dreams. 'If you want to dream about a particular subject,' she says, 'focus on it once you are in bed.
+          <span class="gap-target">
+            [ 37
+            <select id="gap_37" aria-label="Gap 37 selection">
+              <option value="">--</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+            </select>
+            ]
+          </span>
+          You can also place an object or photo that represents the desired dream on your bedside table,' Barrett says.
+        </p>
+        <p>
+          Another key factor in using one's dreams creatively is to avoid jumping out of bed the moment you wake up.
+          <span class="gap-target">
+            [ 38
+            <select id="gap_38" aria-label="Gap 38 selection">
+              <option value="">--</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+            </select>
+            ]
+          </span>
+          'If you don't recall a dream immediately, lie still and see if a thought or image comes to mind,' Barrett says. 'Sometimes a whole dream will come flooding back.'
+        </p>
+        <p>
+          The point of this second strategy is to make use of the information presented by our unconscious as we sleep. It's hard to put an exact figure on the ratio of our unconscious to conscious mind, but psychologists estimate it to be nine to one. We may believe that thinking is our best problem-solving strategy, but the power of our conscious mind is relatively tiny.
+          <span class="gap-target">
+            [ 39
+            <select id="gap_39" aria-label="Gap 39 selection">
+              <option value="">--</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+            </select>
+            ]
+          </span>
+          So letting the unconscious mind work on it may be healthier and more productive.
+        </p>
+        <p>
+          Barrett put this to the test in a week-long study with college students; she asked them to use dreaming as a way of finding ways of dealing with a particular problem.
+          <span class="gap-target">
+            [ 40
+            <select id="gap_40" aria-label="Gap 40 selection">
+              <option value="">--</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+            </select>
+            ]
+          </span>
+          'If we're stuck on a problem, it's our waking, logical way of thinking that's stuck,' Barrett says. 'The dream's power lies in the fact that it's a different manner of thought – it adds to and develops what we've already done while awake.'
+        </p>
+        <p>
+          Most of us enjoy the rich, pleasantly strange experience of dreaming (and we all dream – some people just don't remember it). But no one enjoys nightmares that keep coming back, or the kind of unpleasant dreams from which you wake sweating.
+          <span class="gap-target">
+            [ 41
+            <select id="gap_41" aria-label="Gap 41 selection">
+              <option value="">--</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+            </select>
+            ]
+          </span>
+          'It's very common for them to have nightmares about being chased by a monster,' says Delphi Ellis, a counsellor and dream expert. 'This often happens as they get older and become aware of their place in the huge world.'
+        </p>
+        <p>
+          'As an adult, troubling or frightening dreams are often an indication of difficult issues from the past,' Ellis says.
+          <span class="gap-target">
+            [ 42
+            <select id="gap_42" aria-label="Gap 42 selection">
+              <option value="">--</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+            </select>
+            ]
+          </span>
+          They and all other kinds of dream are an incredibly valuable resource, which most of us simply ignore. So learn to listen to them, even the horrible ones – they're always trying to tell you something.'
+        </p>
+      </section>
+
+      <!-- Right Column: Sentence Pool & Feedback Display -->
+      <section class="sidebar-column">
+        <div class="sentences-card">
+          <h3 class="sentences-card-title">Removed Sentences (A–G)</h3>
+
+          <div class="sentence-item">
+            <span class="sentence-letter">A</span>
+            <span>It's one in which you know you're dreaming as the dream is occurring – the kind of 'dream within a dream' that film characters sometimes have.</span>
+          </div>
+          <div class="sentence-item">
+            <span class="sentence-letter">B</span>
+            <span>Even more anxiety-causing, if you're a parent, are the scary ones that have such an effect on your kids.</span>
+          </div>
+          <div class="sentence-item">
+            <span class="sentence-letter">C</span>
+            <span>Doing so means you'll lose half of what your dream contained as the day's distractions take over your thoughts.</span>
+          </div>
+          <div class="sentence-item">
+            <span class="sentence-letter">D</span>
+            <span>About half of them dreamt about it and one-quarter of them solved it.</span>
+          </div>
+          <div class="sentence-item">
+            <span class="sentence-letter">E</span>
+            <span>Since dreaming is so visual, form a picture in your mind of something related to that topic as you fall asleep.</span>
+          </div>
+          <div class="sentence-item">
+            <span class="sentence-letter">F</span>
+            <span>The more you ignore dreams like those, the more your unconscious turns up the volume – so a nightmare is that message on full volume.</span>
+          </div>
+          <div class="sentence-item">
+            <span class="sentence-letter">G</span>
+            <span>Also, when this consists of going over and over negative or worrying issues in our minds, it is strongly linked with stress, depression and anxiety.</span>
+          </div>
+        </div>
+
+        <div class="actions-bar">
+          <button type="button" class="btn-submit" id="submitBtn">Submit & View Diagnostic Feedback</button>
+        </div>
+
+        <div class="feedback-panel" id="feedbackPanel"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    All Rights Reserved © by Dr. Jesús Miguel Lima E. • JM ELT Solutions
+  </footer>
+
+  <!-- Modal Diagnostic Feedback -->
+  <div class="modal-overlay" id="feedbackModal">
+    <div class="modal-container">
+      <h2 class="modal-title">Diagnostic Results</h2>
+      <div class="score-display" id="scoreValue">0 / 12</div>
+      <p class="score-breakdown" id="scoreBreakdown">
+        You answered 0 out of 6 questions correctly.<br>
+        (Cambridge B2 Reading: 2 marks per question)
+      </p>
+      <div class="modal-actions">
+        <button type="button" class="btn-modal-primary" id="btnNextBlock">Continue to Block 05 • Reading Part 5 ➔</button>
+        <button type="button" class="btn-modal-secondary" onclick="closeModal()">Review Answers on Screen</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Master Pedagogical Data & Official Cambridge Key (Practice Test 11 Part 6: 37E, 38C, 39G, 40D, 41B, 42F)
+    const PEDAGOGICAL_DATA_B4P6 = {
+      37: {
+        correct: "E",
+        leadIn: "Before gap: '...focus on it once you are in bed.' After gap: 'You can also place an object or photo that represents the desired dream on your bedside table...'",
+        whyCorrect: "Sentence E provides the specific visual technique ('Since dreaming is so visual, form a picture in your mind of something related to that topic...'), linking 'a particular subject' to 'that topic' and leading naturally into the additional option ('You can also place an object or photo...').",
+        trap: "Sentence A refers to lucid dreaming ('dream within a dream'), which is not discussed in this instructional paragraph about priming a dream topic."
+      },
+      38: {
+        correct: "C",
+        leadIn: "Before gap: '...avoid jumping out of bed the moment you wake up.' After gap: ''If you don't recall a dream immediately, lie still and see if a thought or image comes to mind...''",
+        whyCorrect: "Sentence C uses the cohesive link 'Doing so' to explain the negative consequence of jumping out of bed ('means you'll lose half of what your dream contained as the day's distractions take over your thoughts'), perfectly setting up Barrett's advice to lie still.",
+        trap: "Sentence E belongs in the evening preparation stage, not in the morning waking routine."
+      },
+      39: {
+        correct: "G",
+        leadIn: "Before gap: '...the power of our conscious mind is relatively tiny.' After gap: 'So letting the unconscious mind work on it may be healthier and more productive.'",
+        whyCorrect: "Sentence G links back to conscious, waking thought ('when this consists of going over and over negative or worrying issues...') and highlights its links with stress, concluding why letting the unconscious take over is 'healthier and more productive'.",
+        trap: "Sentence D reports study numbers, which have not yet been introduced until the next paragraph."
+      },
+      40: {
+        correct: "D",
+        leadIn: "Before gap: '...in a week-long study with college students; she asked them to use dreaming as a way of finding ways of dealing with a particular problem.' After gap: ''If we're stuck on a problem, it's our waking, logical way of thinking that's stuck...''",
+        whyCorrect: "Sentence D delivers the experimental results of the study: 'About half of them dreamt about it and one-quarter of them solved it', where 'them' co-refers with the college students.",
+        trap: "Sentence F addresses nightmares and adult trauma, completely out of place in a controlled academic study on problem-solving."
+      },
+      41: {
+        correct: "B",
+        leadIn: "Before gap: '...unpleasant dreams from which you wake sweating.' After gap: ''It's very common for them to have nightmares about being chased by a monster,'' says Delphi Ellis... 'This often happens as they get older...''",
+        whyCorrect: "Sentence B introduces children's nightmares ('the scary ones that have such an effect on your kids'), which immediately establishes the antecedent for the plural pronoun 'them' in the quote that follows ('It's very common for them to have nightmares...').",
+        trap: "Sentence A fails because the following quote discusses children facing monsters, not lucid dreaming or film tropes."
+      },
+      42: {
+        correct: "F",
+        leadIn: "Before gap: ''As an adult, troubling or frightening dreams are often an indication of difficult issues from the past,'' Ellis says.' After gap: 'They and all other kinds of dream are an incredibly valuable resource... So learn to listen to them...'",
+        whyCorrect: "Sentence F elaborates on how unresolved subconscious issues manifest in nightmares ('The more you ignore dreams like those, the more your unconscious turns up the volume...'), setting up the synthesis: 'So learn to listen to them, even the horrible ones'.",
+        trap: "Sentence G repeats an earlier idea about conscious rumination, whereas the focus here is on listening to warning signals from nightmares."
+      }
+    };
+
+    function getFormattedDate() {
+      const now = new Date();
+      const day = String(now.getDate()).padStart(2, '0');
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const year = now.getFullYear();
+      return `${day}/${month}/${year}`;
+    }
+
+    document.getElementById('submitBtn').addEventListener('click', function () {
+      let correctCount = 0;
+      const totalGaps = 6;
+      const pointsPerGap = 2;
+      const feedbackPanel = document.getElementById('feedbackPanel');
+      feedbackPanel.innerHTML = '';
+
+      for (let gapNum = 37; gapNum <= 42; gapNum++) {
+        const selectElem = document.getElementById(`gap_${gapNum}`);
+        const userChoice = selectElem.value;
+        const data = PEDAGOGICAL_DATA_B4P6[gapNum];
+        const isCorrect = userChoice === data.correct;
+
+        if (isCorrect) {
+          correctCount++;
+          selectElem.style.borderColor = 'var(--success-green)';
+          selectElem.style.color = 'var(--success-green)';
+        } else {
+          selectElem.style.borderColor = 'var(--red-cambridge)';
+          selectElem.style.color = '#fb7185';
+        }
+
+        const itemDiv = document.createElement('div');
+        itemDiv.className = `feedback-item ${isCorrect ? 'correct' : 'incorrect'}`;
+        itemDiv.innerHTML = `
+          <div class="feedback-title ${isCorrect ? 'correct' : 'incorrect'}">
+            ${isCorrect ? '✓ Gap ' + gapNum + ': Well done!' : '✗ Gap ' + gapNum + ': Incorrect'} (Selected: ${userChoice || 'Empty'} | Correct: ${data.correct})
+          </div>
+          <div class="feedback-row"><strong>Context Clues:</strong> ${data.leadIn}</div>
+          <div class="feedback-row"><strong>Cohesion Analysis:</strong> ${data.whyCorrect}</div>
+          ${!isCorrect ? `<div class="feedback-row"><strong>Common Trap:</strong> ${data.trap}</div>` : ''}
+        `;
+        feedbackPanel.appendChild(itemDiv);
+      }
+
+      feedbackPanel.style.display = 'flex';
+
+      const totalScore = correctCount * pointsPerGap;
+      const maxScore = totalGaps * pointsPerGap;
+
+      document.getElementById('scoreValue').textContent = `${totalScore} / ${maxScore}`;
+      document.getElementById('scoreBreakdown').innerHTML = `
+        You scored <strong>${correctCount}</strong> out of <strong>${totalGaps}</strong> gaps correctly.<br>
+        (Cambridge B2 Reading Part 6: 2 marks per item | Section total: ${totalScore} pts)
+      `;
+
+      saveSessionData(totalScore, correctCount);
+      document.getElementById('feedbackModal').classList.add('active');
+    });
+
+    function saveSessionData(score, correctCount) {
+      const storageKey = "fce_trainer_parts34_v1";
+      let sessionData = {};
+
+      try {
+        const stored = localStorage.getItem(storageKey);
+        if (stored) {
+          sessionData = JSON.parse(stored);
+        }
+      } catch (e) {
+        sessionData = {};
+      }
+
+      if (!sessionData.unlockedBlocks) {
+        sessionData.unlockedBlocks = [];
+      }
+
+      // Unlock current Block 04 Part 6 and next Block 05 Part 5
+      if (!sessionData.unlockedBlocks.includes("block_04_part_06")) {
+        sessionData.unlockedBlocks.push("block_04_part_06");
+      }
+      if (!sessionData.unlockedBlocks.includes("block_05_part_05")) {
+        sessionData.unlockedBlocks.push("block_05_part_05");
+      }
+
+      sessionData["block_04_part_06"] = {
+        correct: correctCount,
+        total: score,
+        completed: true,
+        timestamp: getFormattedDate()
+      };
+
+      localStorage.setItem(storageKey, JSON.stringify(sessionData));
+    }
+
+    function closeModal() {
+      document.getElementById('feedbackModal').classList.remove('active');
+    }
+
+    // Direct 1-click navigation to Block 05 Part 05
+    document.getElementById('btnNextBlock').addEventListener('click', function () {
+      window.location.href = './BLOCK 05 - PART 05.html';
+    });
+  </script>
+</body>
+</html>

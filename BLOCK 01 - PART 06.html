@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Block 01 • Reading Part 6 | Dr. Jesús Miguel Lima E. • JM ELT Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #040914;
+      --bg-panel: #0a1324;
+      --bg-card: #101d36;
+      --border-subtle: #1e293b;
+      --border-focus: #3b82f6;
+      --gold-cambridge: #d4af37;
+      --gold-hover: #b89628;
+      --blue-cambridge: #2563eb;
+      --blue-cambridge-light: #60a5fa;
+      --red-cambridge: #c8102e;
+      --success-green: #10b981;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: var(--bg-panel);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-back {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover {
+      color: var(--gold-cambridge);
+    }
+
+    .brand-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+    }
+
+    .module-badge {
+      background: rgba(37, 99, 235, 0.15);
+      border: 1px solid var(--blue-cambridge);
+      color: var(--blue-cambridge-light);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+    }
+
+    .container {
+      flex: 1;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 1.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .module-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .module-heading-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+      letter-spacing: -0.02em;
+    }
+
+    .module-heading-sub {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .task-instruction {
+      background-color: var(--bg-panel);
+      border-left: 4px solid var(--gold-cambridge);
+      padding: 1rem 1.25rem;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .task-instruction strong {
+      color: var(--text-main);
+    }
+
+    .reading-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 1024px) {
+      .reading-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .text-column {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 2.25rem;
+      font-size: 1.05rem;
+      line-height: 1.85;
+      max-height: calc(100vh - 270px);
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-subtle) transparent;
+    }
+
+    .article-header {
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 1rem;
+    }
+
+    .article-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+      margin-bottom: 0.35rem;
+    }
+
+    .article-subtitle {
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    .text-column p {
+      margin-bottom: 1.5rem;
+      text-align: justify;
+    }
+
+    .text-column p:last-child {
+      margin-bottom: 0;
+    }
+
+    .gap-target {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.2rem 0.5rem;
+      background-color: rgba(212, 175, 55, 0.1);
+      border: 1px solid var(--gold-cambridge);
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+      margin: 0 0.25rem;
+    }
+
+    .gap-target select {
+      background-color: var(--bg-card);
+      border: 1px solid var(--gold-cambridge);
+      color: var(--gold-cambridge);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .gap-target select:focus {
+      border-color: var(--blue-cambridge-light);
+    }
+
+    .sidebar-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      max-height: calc(100vh - 270px);
+      overflow-y: auto;
+      padding-right: 0.5rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-subtle) transparent;
+    }
+
+    .sentences-card {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+
+    .sentences-card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 0.5rem;
+    }
+
+    .sentence-item {
+      display: flex;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      margin-bottom: 0.65rem;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .sentence-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .sentence-letter {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: var(--blue-cambridge-light);
+      flex-shrink: 0;
+      min-width: 1.2rem;
+    }
+
+    .feedback-panel {
+      display: none;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .feedback-item {
+      background-color: var(--bg-panel);
+      border-radius: 6px;
+      padding: 1rem;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .feedback-item.correct {
+      border-left: 4px solid var(--success-green);
+      background: rgba(16, 185, 129, 0.08);
+      color: #d1fae5;
+    }
+
+    .feedback-item.incorrect {
+      border-left: 4px solid var(--red-cambridge);
+      background: rgba(200, 16, 46, 0.08);
+      color: #fecdd3;
+    }
+
+    .feedback-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .feedback-title.correct {
+      color: var(--success-green);
+    }
+
+    .feedback-title.incorrect {
+      color: #fb7185;
+    }
+
+    .feedback-row {
+      margin-top: 0.35rem;
+    }
+
+    .feedback-row strong {
+      color: var(--text-main);
+    }
+
+    .actions-bar {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .btn-submit {
+      background-color: var(--gold-cambridge);
+      color: #040914;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.85rem 2rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--gold-hover);
+    }
+
+    .btn-submit:active {
+      transform: scale(0.98);
+    }
+
+    footer {
+      background-color: var(--bg-panel);
+      border-top: 1px solid var(--border-subtle);
+      padding: 1.25rem 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: auto;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(4, 9, 20, 0.85);
+      display: none;
+      place-items: center;
+      z-index: 100;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-overlay.active {
+      display: grid;
+    }
+
+    .modal-container {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--gold-cambridge);
+      border-radius: 8px;
+      width: 90%;
+      max-width: 520px;
+      padding: 2.25rem;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    .modal-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      color: var(--gold-cambridge);
+      margin-bottom: 0.5rem;
+    }
+
+    .score-display {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 1rem 0;
+    }
+
+    .score-breakdown {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+      line-height: 1.5;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .btn-modal-primary {
+      background-color: var(--gold-cambridge);
+      color: #040914;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      padding: 0.85rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 0.95rem;
+      transition: background-color 0.2s;
+    }
+
+    .btn-modal-primary:hover {
+      background-color: var(--gold-hover);
+    }
+
+    .btn-modal-secondary {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      padding: 0.75rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .btn-modal-secondary:hover {
+      border-color: var(--text-muted);
+      color: var(--text-main);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand-group">
+      <a href="./index.html" class="nav-back">← Roadmap Hub</a>
+      <div class="brand-title">Dr. Jesús Miguel Lima E. • JM ELT Solutions</div>
+    </div>
+    <div class="module-badge">BLOCK 01 • PART 6</div>
+  </header>
+
+  <main class="container">
+    <div class="module-header">
+      <h1 class="module-heading-title">Reading Part 6 • Mock 01</h1>
+      <span class="module-heading-sub">Cambridge English: B2 First (FCE) • Training Block 01 (Part 2 of 2: Gapped Text)</span>
+    </div>
+
+    <div class="task-instruction">
+      You are going to read a magazine article about outdoor ice skating. Six sentences have been removed from the article. Choose from the sentences <strong>A–G</strong> the one which fits each gap (<strong>37–42</strong>). There is one extra sentence which you do not need to use. Each correct question awards <strong>2 points</strong> (Total: 12 points).
+    </div>
+
+    <div class="reading-grid">
+      <!-- Left Column: Gapped Text Article -->
+      <section class="text-column">
+        <div class="article-header">
+          <h2 class="article-title">Go skating in Sweden this winter</h2>
+          <p class="article-subtitle">Forget crowded indoor ice rinks. Once you've skated on natural ice, there's no going back.</p>
+        </div>
+
+        <p>
+          It was the question on all of our minds, but I asked it: 'How do you know when the ice isn't safe to skate on?' Niklas, our calm Swedish guide, rubbed his chin, thought for a moment, then offered up the wisdom of a lifetime spent playing around on frozen water. 'When it breaks,' he said with a broad smile.
+        </p>
+        <p>
+          The comment wasn't exactly reassuring, but his easy confidence was. As long as it was just jokes being cracked, maybe we'd be all right after all. Niklas, a maths teacher when having breaks from pursuing his favourite hobby, was not entirely joking about his attitude to ice.
+          <span class="gap-target">
+            [ 37
+            <select id="gap_37" aria-label="Gap 37 selection">
+              <option value="">--</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+            </select>
+            ]
+          </span>
+          The fact that strong ice makes a deeper sound under one's feet than thin ice does is a useful clue.
+        </p>
+        <p>
+          Our group of beginners was feeling rather nervous as we stood at the edge of a vast frozen bay that first day. Niklas tried his best to persuade us to move forward but, like hesitating penguins on an iceberg, no-one wanted to take the first step.
+          <span class="gap-target">
+            [ 38
+            <select id="gap_38" aria-label="Gap 38 selection">
+              <option value="">--</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+            </select>
+            ]
+          </span>
+          'Look at your faces,' shouted Niklas to the happily smiling group, racing along behind him.
+        </p>
+        <p>
+          Our expressions had been far less joyful the previous evening on being told that a five-hour drive would follow our flights into Sweden's Arlanda airport. That hadn't been the plan; but then, in the world of natural ice skating, no-one expects very much from plans. With its 100,000 lakes and continuous sub-zero winter temperatures, Sweden has no shortage of ice.
+          <span class="gap-target">
+            [ 39
+            <select id="gap_39" aria-label="Gap 39 selection">
+              <option value="">--</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+            </select>
+            ]
+          </span>
+          For instance, too much overlying snow and you get a bumpy, uncomfortable ride; a sudden thaw and vast areas become unusable.
+        </p>
+        <p>
+          Perfect conditions must be sought out, and don't last.
+          <span class="gap-target">
+            [ 40
+            <select id="gap_40" aria-label="Gap 40 selection">
+              <option value="">--</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+            </select>
+            ]
+          </span>
+          Niklas had received a message via social media about Stigfjorden, a shallow, island-studded bay around 50 kilometres north of Gothenburg on the west coast.
+        </p>
+        <p>
+          There we quickly discovered skating in the open air is a wonderfully leisurely activity. Push off with one skate and you can go 10 metres with ease. Two or three quick kicks at the surface and you accelerate like a top-class sprinter.
+          <span class="gap-target">
+            [ 41
+            <select id="gap_41" aria-label="Gap 41 selection">
+              <option value="">--</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+            </select>
+            ]
+          </span>
+          We weren't yet ready to skate that kind of distance, but we certainly had a wonderful sense of freedom.
+        </p>
+        <p>
+          Our best day was at Vattern, one of Europe's biggest lakes and also one of its clearest. In ideal conditions, this clarity creates a phenomenon known as 'glass ice'. The rocky lake bottom stretched beneath us, three metres below a surface so perfect it was unseen. My tentative first steps left scratches; it felt like vandalising a classical sculpture. As my confidence grew, so did my speed. The sensation as I raced across the invisible ice was astonishing, somewhere between floating, falling and flying. Then there was a sharp noise from all around us.
+          <span class="gap-target">
+            [ 42
+            <select id="gap_42" aria-label="Gap 42 selection">
+              <option value="">--</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+            </select>
+            ]
+          </span>
+          No one had to say it. We were skating on very thin ice.
+        </p>
+      </section>
+
+      <!-- Right Column: Sentence Pool & Feedback Display -->
+      <section class="sidebar-column">
+        <div class="sentences-card">
+          <h3 class="sentences-card-title">Removed Sentences (A–G)</h3>
+
+          <div class="sentence-item">
+            <span class="sentence-letter">A</span>
+            <span>That was the reason for our unscheduled journey from one side of the country to the other.</span>
+          </div>
+          <div class="sentence-item">
+            <span class="sentence-letter">B</span>
+            <span>Ten minutes later we laughed at our earlier caution as we slid across the smooth surface, our joy as limitless as our surroundings.</span>
+          </div>
+          <div class="sentence-item">
+            <span class="sentence-letter">C</span>
+            <span>The skates consisted of removable blades that fastened to the toes of our specialist boots like cross-country skis.</span>
+          </div>
+          <div class="sentence-item">
+            <span class="sentence-letter">D</span>
+            <span>At first I ignored it, but when thin cracks began to appear I thought it wise to return to solid ground.</span>
+          </div>
+          <div class="sentence-item">
+            <span class="sentence-letter">E</span>
+            <span>After our first session on the ice had ended, we were not surprised to be told that covering 250 kilometres in a single day is quite possible.</span>
+          </div>
+          <div class="sentence-item">
+            <span class="sentence-letter">F</span>
+            <span>The Swedes adopt a common-sense approach: they are cautious, they test as they go, and they use ears – as well as eyes – to check it.</span>
+          </div>
+          <div class="sentence-item">
+            <span class="sentence-letter">G</span>
+            <span>This is not always suited to skating, however.</span>
+          </div>
+        </div>
+
+        <div class="actions-bar">
+          <button type="button" class="btn-submit" id="submitBtn">Submit & View Diagnostic Feedback</button>
+        </div>
+
+        <div class="feedback-panel" id="feedbackPanel"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    All Rights Reserved © by Dr. Jesús Miguel Lima E. • JM ELT Solutions
+  </footer>
+
+  <!-- Modal Diagnostic Feedback -->
+  <div class="modal-overlay" id="feedbackModal">
+    <div class="modal-container">
+      <h2 class="modal-title">Diagnostic Results</h2>
+      <div class="score-display" id="scoreValue">0 / 12</div>
+      <p class="score-breakdown" id="scoreBreakdown">
+        You answered 0 out of 6 questions correctly.<br>
+        (Cambridge B2 Reading: 2 marks per question)
+      </p>
+      <div class="modal-actions">
+        <button type="button" class="btn-modal-primary" id="btnNextBlock">Continuar a Block 02 • Reading Part 5 ➔</button>
+        <button type="button" class="btn-modal-secondary" onclick="closeModal()">Review Answers on Screen</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Master Pedagogical Data & Official Cambridge Key (Part 6)
+    const PEDAGOGICAL_DATA_P6 = {
+      37: {
+        correct: "F",
+        leadIn: "Before gap: Niklas 'was not entirely joking about his attitude to ice.' After gap: 'The fact that strong ice makes a deeper sound under one's feet...'",
+        whyCorrect: "Sentence F explains how Swedes assess ice safety using their senses ('they use ears – as well as eyes – to check it'), perfectly bridging to the following sentence about the acoustic clue of deep ice sounds.",
+        trap: "Choosing sentence C or G ignores the immediate acoustic cohesion ('sound', 'ears') that ties the paragraphs before and after gap 37."
+      },
+      38: {
+        correct: "B",
+        leadIn: "Before gap: '...like hesitating penguins on an iceberg, no-one wanted to take the first step.' After gap: ''Look at your faces,' shouted Niklas to the happily smiling group...'",
+        whyCorrect: "Sentence B resolves the initial fear ('we laughed at our earlier caution') and establishes the emotional shift to joy, matching Niklas observing the 'happily smiling group'.",
+        trap: "Choosing sentence E creates a timeline error, as the session has only just begun and they have not yet finished or heard about 250 km distances."
+      },
+      39: {
+        correct: "G",
+        leadIn: "Before gap: 'Sweden has no shortage of ice.' After gap: 'For instance, too much overlying snow and you get a bumpy, uncomfortable ride...'",
+        whyCorrect: "Sentence G introduces the necessary contrast ('This is not always suited to skating, however') and the pronoun 'This' refers back to Sweden's abundant ice, while setting up the exact examples ('For instance') of unusable ice.",
+        trap: "Sentence A fails here because the examples of snow and thaws explain skating conditions, not the reason for crossing the country."
+      },
+      40: {
+        correct: "A",
+        leadIn: "Before gap: 'Perfect conditions must be sought out, and don't last.' After gap: 'Niklas had received a message via social media about Stigfjorden... 50 kilometres north of Gothenburg on the west coast.'",
+        whyCorrect: "Sentence A explains the 'unscheduled journey from one side of the country to the other' mentioned in the previous paragraph (flying into Stockholm Arlanda on the east and driving 5 hours to the west coast).",
+        trap: "Sentence C does not connect with geographical travel or searching for fleeting ice conditions."
+      },
+      41: {
+        correct: "E",
+        leadIn: "Before gap: 'Push off with one skate and you can go 10 metres with ease... accelerate like a top-class sprinter.' After gap: 'We weren't yet ready to skate that kind of distance...'",
+        whyCorrect: "Sentence E introduces the benchmark of 'covering 250 kilometres in a single day', directly matching the cohesive reference in the subsequent sentence: 'that kind of distance'.",
+        trap: "Sentence B cannot fit here because the transition from hesitation to smiling was already resolved earlier."
+      },
+      42: {
+        correct: "D",
+        leadIn: "Before gap: 'Then there was a sharp noise from all around us.' After gap: 'No one had to say it. We were skating on very thin ice.'",
+        whyCorrect: "Sentence D connects with the sudden acoustic shock: 'At first I ignored it [the sharp noise], but when thin cracks began to appear I thought it wise to return to solid ground.'",
+        trap: "Sentence C (describing equipment) completely disrupts the dramatic tension of hearing cracking ice."
+      }
+    };
+
+    function getFormattedDate() {
+      const now = new Date();
+      const day = String(now.getDate()).padStart(2, '0');
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const year = now.getFullYear();
+      return `${day}/${month}/${year}`;
+    }
+
+    document.getElementById('submitBtn').addEventListener('click', function () {
+      let correctCount = 0;
+      const totalGaps = 6;
+      const pointsPerGap = 2;
+      const feedbackPanel = document.getElementById('feedbackPanel');
+      feedbackPanel.innerHTML = '';
+
+      for (let gapNum = 37; gapNum <= 42; gapNum++) {
+        const selectElem = document.getElementById(`gap_${gapNum}`);
+        const userChoice = selectElem.value;
+        const data = PEDAGOGICAL_DATA_P6[gapNum];
+        const isCorrect = userChoice === data.correct;
+
+        if (isCorrect) {
+          correctCount++;
+          selectElem.style.borderColor = 'var(--success-green)';
+          selectElem.style.color = 'var(--success-green)';
+        } else {
+          selectElem.style.borderColor = 'var(--red-cambridge)';
+          selectElem.style.color = '#fb7185';
+        }
+
+        // Build Diagnostic Feedback Card
+        const itemDiv = document.createElement('div');
+        itemDiv.className = `feedback-item ${isCorrect ? 'correct' : 'incorrect'}`;
+        itemDiv.innerHTML = `
+          <div class="feedback-title ${isCorrect ? 'correct' : 'incorrect'}">
+            ${isCorrect ? '✓ Gap ' + gapNum + ': Well done!' : '✗ Gap ' + gapNum + ': Incorrect'} (Selected: ${userChoice || 'Empty'} | Correct: ${data.correct})
+          </div>
+          <div class="feedback-row"><strong>Context Clues:</strong> ${data.leadIn}</div>
+          <div class="feedback-row"><strong>Cohesion Analysis:</strong> ${data.whyCorrect}</div>
+          ${!isCorrect ? `<div class="feedback-row"><strong>Common Trap:</strong> ${data.trap}</div>` : ''}
+        `;
+        feedbackPanel.appendChild(itemDiv);
+      }
+
+      feedbackPanel.style.display = 'flex';
+
+      const totalScore = correctCount * pointsPerGap;
+      const maxScore = totalGaps * pointsPerGap;
+
+      // Update Modal
+      document.getElementById('scoreValue').textContent = `${totalScore} / ${maxScore}`;
+      document.getElementById('scoreBreakdown').innerHTML = `
+        You scored <strong>${correctCount}</strong> out of <strong>${totalGaps}</strong> gaps correctly.<br>
+        (Cambridge B2 Reading Part 6: 2 marks per item | Section total: ${totalScore} pts)
+      `;
+
+      // Save to localStorage
+      saveSessionData(totalScore, correctCount);
+
+      // Open Modal
+      document.getElementById('feedbackModal').classList.add('active');
+    });
+
+    function saveSessionData(score, correctCount) {
+      const storageKey = "fce_trainer_parts34_v1";
+      let sessionData = {};
+
+      try {
+        const stored = localStorage.getItem(storageKey);
+        if (stored) {
+          sessionData = JSON.parse(stored);
+        }
+      } catch (e) {
+        sessionData = {};
+      }
+
+      if (!sessionData.unlockedBlocks) {
+        sessionData.unlockedBlocks = [];
+      }
+
+      // Unlock current Part 6 and next Block (Block 02 Part 5)
+      if (!sessionData.unlockedBlocks.includes("block_01_part_06")) {
+        sessionData.unlockedBlocks.push("block_01_part_06");
+      }
+      if (!sessionData.unlockedBlocks.includes("block_02_part_05")) {
+        sessionData.unlockedBlocks.push("block_02_part_05");
+      }
+
+      sessionData["block_01_part_06"] = {
+        correct: correctCount,
+        total: score,
+        completed: true,
+        timestamp: getFormattedDate()
+      };
+
+      localStorage.setItem(storageKey, JSON.stringify(sessionData));
+    }
+
+    function closeModal() {
+      document.getElementById('feedbackModal').classList.remove('active');
+    }
+
+    // Direct 1-click navigation to Block 02 Reading Part 5
+    document.getElementById('btnNextBlock').addEventListener('click', function () {
+      window.location.href = './BLOCK 02 - PART 05.html';
+    });
+  </script>
+</body>
+</html>

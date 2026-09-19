@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Block 02 • Reading Part 5 | Dr. Jesús Miguel Lima E. • JM ELT Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #040914;
+      --bg-panel: #0a1324;
+      --bg-card: #101d36;
+      --border-subtle: #1e293b;
+      --border-focus: #3b82f6;
+      --gold-cambridge: #d4af37;
+      --gold-hover: #b89628;
+      --blue-cambridge: #2563eb;
+      --blue-cambridge-light: #60a5fa;
+      --red-cambridge: #c8102e;
+      --success-green: #10b981;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: var(--bg-panel);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-back {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover {
+      color: var(--gold-cambridge);
+    }
+
+    .brand-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+    }
+
+    .module-badge {
+      background: rgba(37, 99, 235, 0.15);
+      border: 1px solid var(--blue-cambridge);
+      color: var(--blue-cambridge-light);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+    }
+
+    .container {
+      flex: 1;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 1.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .module-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .module-heading-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+      letter-spacing: -0.02em;
+    }
+
+    .module-heading-sub {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .task-instruction {
+      background-color: var(--bg-panel);
+      border-left: 4px solid var(--gold-cambridge);
+      padding: 1rem 1.25rem;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .task-instruction strong {
+      color: var(--text-main);
+    }
+
+    .reading-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 1024px) {
+      .reading-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .text-column {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 2.25rem;
+      font-size: 1.05rem;
+      line-height: 1.85;
+      max-height: calc(100vh - 270px);
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-subtle) transparent;
+    }
+
+    .article-header {
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 1rem;
+    }
+
+    .article-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+      margin-bottom: 0.35rem;
+    }
+
+    .text-column p {
+      margin-bottom: 1.5rem;
+      text-align: justify;
+    }
+
+    .text-column p:last-child {
+      margin-bottom: 0;
+    }
+
+    .questions-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      max-height: calc(100vh - 270px);
+      overflow-y: auto;
+      padding-right: 0.5rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-subtle) transparent;
+    }
+
+    .question-card {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      transition: border-color 0.2s;
+    }
+
+    .question-card:focus-within {
+      border-color: var(--border-focus);
+    }
+
+    .question-header {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .q-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+      flex-shrink: 0;
+    }
+
+    .q-text {
+      font-weight: 600;
+      font-size: 0.98rem;
+      color: var(--text-main);
+    }
+
+    .options-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .option-label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.92rem;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .option-label:hover {
+      border-color: var(--blue-cambridge);
+      background-color: rgba(37, 99, 235, 0.08);
+    }
+
+    .option-label input[type="radio"] {
+      appearance: none;
+      width: 1.15rem;
+      height: 1.15rem;
+      border: 2px solid var(--text-muted);
+      border-radius: 50%;
+      outline: none;
+      display: grid;
+      place-content: center;
+      transition: border-color 0.2s;
+      flex-shrink: 0;
+    }
+
+    .option-label input[type="radio"]::before {
+      content: "";
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 50%;
+      transform: scale(0);
+      transition: transform 0.15s ease-in-out;
+      background-color: var(--gold-cambridge);
+    }
+
+    .option-label input[type="radio"]:checked {
+      border-color: var(--gold-cambridge);
+    }
+
+    .option-label input[type="radio"]:checked::before {
+      transform: scale(1);
+    }
+
+    .opt-key {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: var(--blue-cambridge-light);
+      min-width: 1rem;
+    }
+
+    .diagnostic-feedback-box {
+      display: none;
+      margin-top: 1rem;
+      padding: 1rem 1.25rem;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+
+    .diagnostic-feedback-box.correct {
+      display: block;
+      background: rgba(16, 185, 129, 0.08);
+      border-left: 4px solid var(--success-green);
+      color: #d1fae5;
+    }
+
+    .diagnostic-feedback-box.incorrect {
+      display: block;
+      background: rgba(200, 16, 46, 0.08);
+      border-left: 4px solid var(--red-cambridge);
+      color: #fecdd3;
+    }
+
+    .feedback-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .feedback-title.correct {
+      color: var(--success-green);
+    }
+
+    .feedback-title.incorrect {
+      color: #fb7185;
+    }
+
+    .feedback-section {
+      margin-top: 0.45rem;
+    }
+
+    .feedback-section strong {
+      color: var(--text-main);
+    }
+
+    .actions-bar {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .btn-submit {
+      background-color: var(--gold-cambridge);
+      color: #040914;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.85rem 2rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--gold-hover);
+    }
+
+    .btn-submit:active {
+      transform: scale(0.98);
+    }
+
+    footer {
+      background-color: var(--bg-panel);
+      border-top: 1px solid var(--border-subtle);
+      padding: 1.25rem 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: auto;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(4, 9, 20, 0.85);
+      display: none;
+      place-items: center;
+      z-index: 100;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-overlay.active {
+      display: grid;
+    }
+
+    .modal-container {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--gold-cambridge);
+      border-radius: 8px;
+      width: 90%;
+      max-width: 520px;
+      padding: 2.25rem;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    .modal-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      color: var(--gold-cambridge);
+      margin-bottom: 0.5rem;
+    }
+
+    .score-display {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 1rem 0;
+    }
+
+    .score-breakdown {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+      line-height: 1.5;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .btn-modal-primary {
+      background-color: var(--gold-cambridge);
+      color: #040914;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      padding: 0.85rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 0.95rem;
+      transition: background-color 0.2s;
+    }
+
+    .btn-modal-primary:hover {
+      background-color: var(--gold-hover);
+    }
+
+    .btn-modal-secondary {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      padding: 0.75rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .btn-modal-secondary:hover {
+      border-color: var(--text-muted);
+      color: var(--text-main);
+    }
+
+    .option-label.is-correct {
+      border-color: var(--success-green) !important;
+      background-color: rgba(16, 185, 129, 0.12) !important;
+    }
+
+    .option-label.is-wrong {
+      border-color: var(--red-cambridge) !important;
+      background-color: rgba(200, 16, 46, 0.12) !important;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand-group">
+      <a href="./index.html" class="nav-back">← Roadmap Hub</a>
+      <div class="brand-title">Dr. Jesús Miguel Lima E. • JM ELT Solutions</div>
+    </div>
+    <div class="module-badge">BLOCK 02 • PART 5</div>
+  </header>
+
+  <main class="container">
+    <div class="module-header">
+      <h1 class="module-heading-title">Reading Part 5 • Mock 02</h1>
+      <span class="module-heading-sub">Cambridge English: B2 First (FCE) • Training Block 02 (Part 1 of 2)</span>
+    </div>
+
+    <div class="task-instruction">
+      You are going to read an article about the actor Daniel Radcliffe, who played the role of Harry Potter in the films. For questions <strong>31–36</strong>, choose the answer (<strong>A</strong>, <strong>B</strong>, <strong>C</strong> or <strong>D</strong>) which you think fits best according to the text. Each correct question awards <strong>2 points</strong> (Total: 12 points).
+    </div>
+
+    <div class="reading-grid">
+      <!-- Left Column: Reading Text -->
+      <section class="text-column">
+        <div class="article-header">
+          <h2 class="article-title">Daniel Radcliffe</h2>
+        </div>
+
+        <p>
+          I first meet Daniel Radcliffe at the offices of his agent, just before he takes to the stage for an evening performance of <em>The Cripple Of Inishmaan</em>. He’s wearing tight jeans, no glasses, and is a super ball of energy. He is extraordinarily polite, slim, well turned out. If you’d never seen him before, you might assume he was a children’s television presenter. But at the age of just 24 he has 16 movies behind him, eight of them Harry Potter blockbusters. It feels as if he’s been with us forever. The funny thing is, apart from the facial hair, he doesn’t really look any different from the schoolboy wizard who made his screen debut in 2001.
+        </p>
+        <p>
+          Yet over the past half-dozen years, it seems he has done everything he could to distinguish himself from Harry in the parts he has chosen to play. Radcliffe disagrees with this, saying ‘I pick films based on scripts and directors and parts. I’m not interested in making films I’ve seen before. There’s nothing more exciting to me when I read a script than originality. That’s all it’s governed by, there’s no master plan to distance myself from Potter.’
+        </p>
+        <p>
+          He says he doesn’t want to sound ungrateful. ‘I know that Potter is going to be with me for the rest of my life, so to try to stop people talking about that any more is stupid. It’s just a fact of your life, so you can’t get annoyed by it. You have to accept the fact that you were involved in this incredibly cool thing and though you might not always be happy with the work you did on it, the opportunity it has given you to make a career for yourself is amazing.’
+        </p>
+        <p>
+          Was he aware how much Harry would change his life when he was offered the part? ‘No, I knew I was signing on for the first two, that four books had come out. Warner, the film company, genuinely didn’t know at that stage if they were going to make more than one film. If it flopped, then they certainly weren’t going to put up all that money again.’ Did he ever consider exercising his opt-out clause? ‘By the third film, I thought, if there’s a time to get out, it’s now; there’s still enough time for another actor to come in and establish himself. For a while, I thought, if I do all of them, will I be able to move on to other stuff or should I start doing other stuff now? But in the end I decided I was having way too much fun. And actually there aren’t many great parts out there for teenage boys, certainly not as good as Harry Potter.’
+        </p>
+        <p>
+          Nowadays, of course, he is incredibly wealthy. I ask whether he sometimes worries people might socialise with him purely because of that. He laughs, and says people are going to be sadly disappointed if they befriend him for his lavish spending. ‘Anyone who is my friend knows that I don’t spend money. So they can hang around with me as much as they like and they still aren’t going to get anything. Haha!’ But, he says, he has never had a problem with working out who to trust. ‘I’m a fairly good judge of character, and I have a small but very close circle of friends. I’m not looking to recruit new friends, though I’m actually very open with people. I had a similar conversation with myself when I was about 17, the first time somebody had really betrayed that trust, and I said to myself you have two options: you either become totally insular and shut down and not let anybody into your life ever, or you can continue to be open and amiable when you meet people, and trusting, and occasionally get hurt. And I do think that is the best way.’
+        </p>
+      </section>
+
+      <!-- Right Column: Interactive Questions 31-36 -->
+      <section class="questions-column">
+        <form id="readingForm">
+          <!-- Question 31 -->
+          <div class="question-card" id="q31_card">
+            <div class="question-header">
+              <span class="q-number">31</span>
+              <span class="q-text">What do we learn about Daniel in the first paragraph?</span>
+            </div>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="q31" value="A">
+                <span class="opt-key">A</span>
+                <span>He is now working in TV programmes for children.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q31" value="B">
+                <span class="opt-key">B</span>
+                <span>His appearance has changed considerably since his childhood.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q31" value="C">
+                <span class="opt-key">C</span>
+                <span>He is currently acting in the theatre.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q31" value="D">
+                <span class="opt-key">D</span>
+                <span>He is amused by the way he looked in his early films.</span>
+              </label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q31"></div>
+          </div>
+
+          <!-- Question 32 -->
+          <div class="question-card" id="q32_card" style="margin-top: 1.25rem;">
+            <div class="question-header">
+              <span class="q-number">32</span>
+              <span class="q-text">What does Daniel say about his current work?</span>
+            </div>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="q32" value="A">
+                <span class="opt-key">A</span>
+                <span>He likes to make changes to the film scripts he is given.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q32" value="B">
+                <span class="opt-key">B</span>
+                <span>He sometimes has to accept roles he would rather reject.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q32" value="C">
+                <span class="opt-key">C</span>
+                <span>He finds it difficult to play roles that are not Harry.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q32" value="D">
+                <span class="opt-key">D</span>
+                <span>He denies he chooses roles as unlike Harry as possible.</span>
+              </label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q32"></div>
+          </div>
+
+          <!-- Question 33 -->
+          <div class="question-card" id="q33_card" style="margin-top: 1.25rem;">
+            <div class="question-header">
+              <span class="q-number">33</span>
+              <span class="q-text">What does Daniel appear to be criticising in the third paragraph?</span>
+            </div>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="q33" value="A">
+                <span class="opt-key">A</span>
+                <span>Some of his acting in the Harry Potter films.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q33" value="B">
+                <span class="opt-key">B</span>
+                <span>The overall quality of the Harry Potter films.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q33" value="C">
+                <span class="opt-key">C</span>
+                <span>The effect of playing Harry Potter on his career.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q33" value="D">
+                <span class="opt-key">D</span>
+                <span>Attempts to talk to him about Harry Potter.</span>
+              </label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q33"></div>
+          </div>
+
+          <!-- Question 34 -->
+          <div class="question-card" id="q34_card" style="margin-top: 1.25rem;">
+            <div class="question-header">
+              <span class="q-number">34</span>
+              <span class="q-text">When Daniel was first asked to play Harry Potter</span>
+            </div>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="q34" value="A">
+                <span class="opt-key">A</span>
+                <span>he thought the first film would be made on a low budget.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q34" value="B">
+                <span class="opt-key">B</span>
+                <span>he thought that only two Harry Potter books would be published.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q34" value="C">
+                <span class="opt-key">C</span>
+                <span>he had no idea how many films in the series there would be.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q34" value="D">
+                <span class="opt-key">D</span>
+                <span>he only wanted to be in the first film in the series.</span>
+              </label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q34"></div>
+          </div>
+
+          <!-- Question 35 -->
+          <div class="question-card" id="q35_card" style="margin-top: 1.25rem;">
+            <div class="question-header">
+              <span class="q-number">35</span>
+              <span class="q-text">Why did Daniel eventually decide to be in every film?</span>
+            </div>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="q35" value="A">
+                <span class="opt-key">A</span>
+                <span>He thought nobody else could play the role of Harry.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q35" value="B">
+                <span class="opt-key">B</span>
+                <span>He was enjoying making the films so much.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q35" value="C">
+                <span class="opt-key">C</span>
+                <span>He never considered doing any other kind of work.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q35" value="D">
+                <span class="opt-key">D</span>
+                <span>He knew it would eventually lead to different roles.</span>
+              </label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q35"></div>
+          </div>
+
+          <!-- Question 36 -->
+          <div class="question-card" id="q36_card" style="margin-top: 1.25rem;">
+            <div class="question-header">
+              <span class="q-number">36</span>
+              <span class="q-text">How does Daniel feel about friendship?</span>
+            </div>
+            <div class="options-group">
+              <label class="option-label">
+                <input type="radio" name="q36" value="A">
+                <span class="opt-key">A</span>
+                <span>He believes he knows how to choose friends well.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q36" value="B">
+                <span class="opt-key">B</span>
+                <span>He would like to have more friends than he has now.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q36" value="C">
+                <span class="opt-key">C</span>
+                <span>He finds it difficult to trust people these days.</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="q36" value="D">
+                <span class="opt-key">D</span>
+                <span>He likes to be generous to those he is close to.</span>
+              </label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q36"></div>
+          </div>
+
+          <div class="actions-bar">
+            <button type="button" class="btn-submit" id="submitBtn">Submit & View Diagnostic Feedback</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    All Rights Reserved © by Dr. Jesús Miguel Lima E. • JM ELT Solutions
+  </footer>
+
+  <!-- Modal Diagnostic Feedback -->
+  <div class="modal-overlay" id="feedbackModal">
+    <div class="modal-container">
+      <h2 class="modal-title">Diagnostic Results</h2>
+      <div class="score-display" id="scoreValue">0 / 12</div>
+      <p class="score-breakdown" id="scoreBreakdown">
+        You answered 0 out of 6 questions correctly.<br>
+        (Cambridge B2 Reading: 2 marks per question)
+      </p>
+      <div class="modal-actions">
+        <button type="button" class="btn-modal-primary" id="btnNextBlock">Continue to Reading Part 6 ➔</button>
+        <button type="button" class="btn-modal-secondary" onclick="closeModal()">Review Answers on Screen</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Master Pedagogical Data & Official Cambridge Key (Test 4 Part 5) - Updated with exact key: 31C, 32D, 33A, 34C, 35B, 36A
+    const PEDAGOGICAL_DATA_B2P5 = {
+      q31: {
+        correct: "C",
+        location: "Paragraph 1: '...just before he takes to the stage for an evening performance of The Cripple Of Inishmaan.'",
+        whyCorrect: "The text states the interviewer meets him just before he 'takes to the stage for an evening performance', confirming he is currently performing live in a theatrical play.",
+        trap: "Option A is a distractor based on the speculative comment 'you might assume he was a children's television presenter'. Option B contradicts the text ('he doesn't really look any different')."
+      },
+      q32: {
+        correct: "D",
+        location: "Paragraph 2: '...it seems he has done everything he could to distinguish himself from Harry... Radcliffe disagrees with this... 'there’s no master plan to distance myself from Potter.''",
+        whyCorrect: "The writer suggests he deliberately chooses roles unlike Harry, but Radcliffe explicitly disagrees and denies having any master plan to distance himself from Potter.",
+        trap: "Option A misinterprets his search for script originality as altering scripts. Option B is unsupported as he only picks roles from scripts that genuinely excite him."
+      },
+      q33: {
+        correct: "A",
+        location: "Paragraph 3: '...and though you might not always be happy with the work you did on it, the opportunity it has given you... is amazing.'",
+        whyCorrect: "He explicitly admits that 'you might not always be happy with the work you did on it', reflecting criticism of his own acting performance in parts of the film franchise.",
+        trap: "Option D is incorrect because he states trying to stop people talking about Potter is futile/stupid, not a subject of ongoing criticism by him. Option B praises the films as 'incredibly cool'."
+      },
+      q34: {
+        correct: "C",
+        location: "Paragraph 4: 'Warner, the film company, genuinely didn’t know at that stage if they were going to make more than one film...'",
+        whyCorrect: "When offered the part, neither he nor the film company knew how many films would be made, meaning he had no idea of the scale or total number of films in the series.",
+        trap: "Option B is incorrect since four books had already been published when he signed on. Option D is false because he initially signed on for the first two films."
+      },
+      q35: {
+        correct: "B",
+        location: "Paragraph 4: '...if I do all of them, will I be able to move on to other stuff... But in the end I decided I was having way too much fun.'",
+        whyCorrect: "Although he considered exiting by the third film, he ultimately chose to stay in every film because he was having 'way too much fun' making them.",
+        trap: "Option A is wrong because he thought another actor could easily come in and establish himself. Option C is false because he actively weighed whether to move on to other work."
+      },
+      q36: {
+        correct: "A",
+        location: "Paragraph 5: '‘I’m a fairly good judge of character, and I have a small but very close circle of friends.''",
+        whyCorrect: "Daniel states he has never had trust issues because he considers himself 'a fairly good judge of character' and maintains a trusted circle.",
+        trap: "Option B is wrong because he states 'I’m not looking to recruit new friends'. Option D is contradicted by his joke that friends know he doesn't spend money on them."
+      }
+    };
+
+    function getFormattedDate() {
+      const now = new Date();
+      const day = String(now.getDate()).padStart(2, '0');
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const year = now.getFullYear();
+      return `${day}/${month}/${year}`;
+    }
+
+    document.getElementById('submitBtn').addEventListener('click', function () {
+      let correctCount = 0;
+      const totalQuestions = 6;
+      const pointsPerQuestion = 2;
+
+      for (let i = 31; i <= 36; i++) {
+        const qName = 'q' + i;
+        const selected = document.querySelector(`input[name="${qName}"]:checked`);
+        const card = document.getElementById(`${qName}_card`);
+        const labels = card.querySelectorAll('.option-label');
+        const feedbackBox = document.getElementById(`feedback_${qName}`);
+        const data = PEDAGOGICAL_DATA_B2P5[qName];
+
+        labels.forEach(label => {
+          label.classList.remove('is-correct', 'is-wrong');
+          const radio = label.querySelector('input[type="radio"]');
+          if (radio.value === data.correct) {
+            label.classList.add('is-correct');
+          } else if (selected && radio.value === selected.value) {
+            label.classList.add('is-wrong');
+          }
+        });
+
+        const isUserCorrect = selected && selected.value === data.correct;
+        if (isUserCorrect) {
+          correctCount++;
+          feedbackBox.className = "diagnostic-feedback-box correct";
+          feedbackBox.innerHTML = `
+            <div class="feedback-title correct">✓ Well done! Correct Answer: ${data.correct}</div>
+            <div class="feedback-section"><strong>Text Evidence:</strong> ${data.location}</div>
+            <div class="feedback-section"><strong>Pedagogical Analysis:</strong> ${data.whyCorrect}</div>
+          `;
+        } else {
+          feedbackBox.className = "diagnostic-feedback-box incorrect";
+          const chosenLetter = selected ? selected.value : "None";
+          feedbackBox.innerHTML = `
+            <div class="feedback-title incorrect">✗ Incorrect (Your choice: ${chosenLetter} | Correct: ${data.correct})</div>
+            <div class="feedback-section"><strong>Target Clue in Passage:</strong> ${data.location}</div>
+            <div class="feedback-section"><strong>Why This is Correct:</strong> ${data.whyCorrect}</div>
+            <div class="feedback-section"><strong>The Distractor / Trap:</strong> ${data.trap}</div>
+          `;
+        }
+      }
+
+      const totalScore = correctCount * pointsPerQuestion;
+      const maxScore = totalQuestions * pointsPerQuestion;
+
+      // Update Modal
+      document.getElementById('scoreValue').textContent = `${totalScore} / ${maxScore}`;
+      document.getElementById('scoreBreakdown').innerHTML = `
+        You scored <strong>${correctCount}</strong> out of <strong>${totalQuestions}</strong> correct answers.<br>
+        (Cambridge B2 Reading: 2 marks per item | Section total: ${totalScore} pts)
+      `;
+
+      // Save to localStorage
+      saveSessionData(totalScore, correctCount);
+
+      // Open Modal
+      document.getElementById('feedbackModal').classList.add('active');
+    });
+
+    function saveSessionData(score, correctCount) {
+      const storageKey = "fce_trainer_parts34_v1";
+      let sessionData = {};
+
+      try {
+        const stored = localStorage.getItem(storageKey);
+        if (stored) {
+          sessionData = JSON.parse(stored);
+        }
+      } catch (e) {
+        sessionData = {};
+      }
+
+      if (!sessionData.unlockedBlocks) {
+        sessionData.unlockedBlocks = [];
+      }
+
+      if (!sessionData.unlockedBlocks.includes("block_02_part_05")) {
+        sessionData.unlockedBlocks.includes("block_02_part_05") || sessionData.unlockedBlocks.push("block_02_part_05");
+      }
+      if (!sessionData.unlockedBlocks.includes("block_02_part_06")) {
+        sessionData.unlockedBlocks.push("block_02_part_06");
+      }
+
+      sessionData["block_02_part_05"] = {
+        correct: correctCount,
+        total: score,
+        completed: true,
+        timestamp: getFormattedDate()
+      };
+
+      localStorage.setItem(storageKey, JSON.stringify(sessionData));
+    }
+
+    function closeModal() {
+      document.getElementById('feedbackModal').classList.remove('active');
+    }
+
+    document.getElementById('btnNextBlock').addEventListener('click', function () {
+      window.location.href = './BLOCK 02 - PART 06.html';
+    });
+  </script>
+</body>
+</html>
